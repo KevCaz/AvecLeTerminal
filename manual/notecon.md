@@ -2,14 +2,15 @@
 template: ./kev.latex
 fontsize: 12pt
 documentclass: report # article / book / slides / beamer / lettre / memoir
-lang : french
-papersize: a4paper # a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper, b0paper, b1paper, b2paper, b3paper, b4paper, b5paper, b6paper, c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper, b0j, b1j, b2j, b3j, b4j, b5j, b6j, ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper, letterpaper, executivepaper, legalpaper
+lang : fr
+papersize: a4paper
 fontfamily: fourier
 citecolor: blue # green magenta cyan
 urlcolor: magenta #[rgb]{0, 0.5, 0.5} #magenta
 linkcolor: blue #0 .5 .5
 geometry: top=2.5cm, bottom=2.5cm, left=2cm, right=2cm
 toc: true
+toccolor: black
 lof: false
 lot: false
 title: Utiliser le terminal avec MacOS 10.11
@@ -18,6 +19,12 @@ abstract: Le terminal est une interface qui propose une communication avec l'ord
 date: 19 octobre 2015
 # bibliography:
 # biblio-style:
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyhead[CO,CE]{}
+- \fancyfoot[CO,CE]{Utiliser le Terminal}
+- \fancyfoot[LE,RO]{\thepage}
 ---
 
 
@@ -36,6 +43,7 @@ L'ensemble de ce qui suit des heures de recherche sur Internet à essayer de ré
 - Astuces à la volée :
     - [maclife](http://www.maclife.com/search/terminal%20101)
     - [A vos mac](http://www.magazine-avosmac.com/avosmacV4/) (il faut être abonné).
+    - [OSX daily](http://osxdaily.com/)
 - Sites généralistes :
     - Regarder sur openclassroom (ancien site du zéro)
     - Beaucoup d’astuces sur [Comment ça marche](http://www.commentcamarche.net/faq/4801-guide-d-utilisation-du-shell-pour-debutant) (pour Linux mais beaucoup sont directement utilisables)
@@ -70,7 +78,7 @@ Tout au long du document, j'emploie plusieurs abbréviations:
 ## Quelques généralités sur l’application _Terminal_
 
 L'application _Terminal_ est une console pour de nombreux langages de programmation. Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet de piloter son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé dans la suite du document. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
- <!-- L'application Terminal est finalement une interface graphique de terminal, il existe d'autre alternatives. -->
+ <!-- L'application Terminal est finalement une interface graphique de terminal, il existe d'autres alternatives http://www.iterm2.com/features.html. -->
 
 
 ## Raccourcis clavier (par défaut) du terminal
@@ -144,12 +152,12 @@ De manière générale, une commande dans un langage donné, est un ensemble de 
 - Utilisation d’une commande. Dans « Terminal », il est nécessaire d’entrer le nom de la commande puis éventuellement l’option qui est en général un tiret ("-") et une ou ou deux lettres puis éventuellement des paramètres suivis éventuellement de l’objet qu’elle concerne (souvent un fichier représenter par son chemin) : nomcommande -option1 -option2 paramètre objet (il suffit alors de taper **entr**). Les options peuvent être mises les unes à la suite des autres -option1option2.
   - Ex 1 :
 
-  > ls  
+  ls  
 
     Il n’y a que la commande _ls_ qui liste les fichiers du repertoire  courant,
     - Ex 2 :
 
-    > ls -a
+    ls -a
 
     la même commande avec une option -a (afficher tous les fichiers,  même les fichiers cachés),
 
@@ -208,6 +216,8 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 
   si aucun nom de dossier n'est donné, ce sont les fichiers du répertoire courant qui sont listés. Option *-a* pour voir les fichiers cachés et option *-l* pour obtenir des informations sur les fichiers (date de modification et qui est propriétaire).
 
+  > ls -alth
+
 - Connaître la taille des fichiers
 
   > du adr
@@ -255,6 +265,8 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 - Ouvrir un fichier :
 
   > open + adr/fichier
+
+  Pour visualiser un fichier en lecture seule on utilise la commande less :
 
   option *-a* permet de spécifier l’application avec laquelle pouvrir le fichier, ex: open -a Finder / )
 
@@ -356,6 +368,11 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
   > kill + Pid
 
   Le Pid est le numéro d'indentité donné par le taleau top.
+
+ > kill -STOP Pid
+ > kill -COUNT Pid
+
+[kill](http://osxdaily.com/2013/05/30/pause-resume-app-process-mac-os-x/)
 
 
 - Connaître son «load average » :
@@ -537,7 +554,9 @@ pour que ce soit ok
 Ex : si j’utilise très fréquemment ls -la tout le temps => je peux alors créer l’alias : alias ls ‘ls -la’ et alors pour avoir le ls d’origine => la commande : \\ls est alors le ls par défaut.
 
 
-
+screen
+screen -d
+http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/
 
 
 # Les gestionnaires de paquets sous MacOS
@@ -638,17 +657,25 @@ Désinstallation :
 
 ### Commande principales
 
-> brew update
-> brew upgrade
-> brew remove
-> brew list
-> brew doctor
-> brew prune
-> brew tape
-> brew info
+  brew update
+  brew upgrade
+  brew remove
+  brew list
+  brew doctor
+  brew prune
+  brew tape
+  brew info
+  brew update; brew upgrade; brew cleanup; brew cask cleanup;
 
 
 ### Mon installation
+
+> brew install gdal geos proj r imagemagick ffmpeg postgresql pandoc pandoc-citeproc valgrind
+
+NB : cask est une extension de brew il suffit d'utiliser brew cask ou mettre le chemin complet:
+
+> brew cask install julia mactex dropbox copy rstudio atom filezilla libreoffice gimp inkscape mendeley-desktop xquartz appcleaner vlc
+
 
 > brew tap homebrew/science
 
@@ -659,6 +686,37 @@ NB : cask est une extension de brew il suffit d'utiliser brew cask ou mettre le 
 > brew cask install java julia mactex dropbox copy rstudio
 > brew install Caskroom/cask/libreoffice Caskroom/cask/appcleaner Caskroom/cask/atom Caskroom/cask/xquartz Caskroom/cask/filezilla
 
+> sudo chown -R $(whoami):admin /usr/local
+
+<!-- Jekyll -->
+<!-- OrcID gem install faraday
+gem install faraday_middleware -->
+
+# Developpement web
+
+<!-- gem install jekyll -->
+MacOS 10.10 http://ole.michelsen.dk/blog/setup-local-web-server-apache-php-osx-yosemite.html
+MacOS 10.11 http://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-osx-10-11-el-capitan/
+
+sudo apachectl start
+sudo apachectl restart
+httpd -v
+
+Setup local web server with Apache and PHP on OS X El capitan
+
+sudo nano /etc/apache2/users/username.conf
+
+
+# Des logiciels libres dans le terminal
+
+
+
+# Git
+
+> git config --global user.name "KevCaz"
+> git config --global user.email kevin.cazelles@gmail.com
+
+> git reset
 
 
 
@@ -666,5 +724,11 @@ NB : cask est une extension de brew il suffit d'utiliser brew cask ou mettre le 
 
 ## ImageMagick
 
+<!-- identify -verbose rose.jpg -->
+<!-- convert -->
+
+<!-- mogrify -->
 
 ## FFmpeg
+
+ffmpeg -i input_file.mp4 -acodec copy -vcodec copy -f mov output.mov
