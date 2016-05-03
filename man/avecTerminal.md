@@ -1,39 +1,50 @@
 ---
-template: ./kev.latex
-fontsize: 12pt
-documentclass: report # article / book / slides / beamer / lettre / memoir
+documentclass: report
 lang : fr
+title: "Utiliser le terminal sous MacOS 10.11"
+shorttitle: "terminal"
+author: "[Kevin Cazelles](http://kevincazelles.fr)"
 papersize: a4paper
-fontfamily: fourier
-citecolor: blue # green magenta cyan
-urlcolor: magenta #[rgb]{0, 0.5, 0.5} #magenta
-linkcolor: blue #0 .5 .5
-geometry: top=2.5cm, bottom=2.5cm, left=2cm, right=2cm
+font : 12pt
+geometry: margin=1in
+header-includes:
+  - \usepackage{times}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[CO,CE]{}
+  - \fancyfoot[CO,CE]{}
+  - \fancyfoot[LE,RO]{\thepage}
+citecolor: {0.04, 0.08, 0.2}
+#urlcolor: {0.04, 0.08, 0.2}
+#linkcolor: {0.27, 0.27, 0.35}
 toc: true
 toccolor: black
 lof: false
 lot: false
-title: Utiliser le terminal avec MacOS 10.11
-author: Kevin Cazelles kevin(dot)cazelles(at)gmail(dot)com
-abstract: Le terminal est une interface qui propose une communication avec l'ordinateur à l'aide du langage bash (par défaut). Pour communiquer avec l'ordinateur, il est nécessaire de connaître les instructions à lui donner, c'est-à-dire les lignes de commande à utiliser. Je recense dans le présent document un certain nombre de ces lignes commandes, les plus usitées. Elles sont très utiles pour naviguer dans les différents répertoires de son ordinateur, créer des fichiers, les supprimer... Je présente également des installateurs de logiciels libres en ligne de commande et certains de ces logiciels libres qui peuvent être utilsés directement dans le terminal. La première version de ce document date du 20 avril 2013, j'utilisais alors MacOS 10.8 (Mountain Lion). La dernière version du document date du 18 octobre 2015 et mon système d'exploitation est MacOS 10.11 (El Capitan).
-date: 19 octobre 2015
-# bibliography:
-# biblio-style:
-header-includes:
-- \usepackage{fancyhdr}
-- \pagestyle{fancy}
-- \fancyhead[CO,CE]{}
-- \fancyfoot[CO,CE]{Utiliser le Terminal}
-- \fancyfoot[LE,RO]{\thepage}
+abstract: "Le terminal est une fenêtre d'invite de commande, c'est-à-dire une interface graphique doté d'une interprétateur de commande, qui propose une communication avec l'ordinateur. Pour y communiquer avec l'ordinateur il est alors nécessaire de connaître les instructions à lui donner, c'est-à-dire les lignes de commande à utiliser. Je recense ici un certain nombre de ces lignes commandes, les plus usitées. Elles sont très utiles pour naviguer dans les différents répertoires de son ordinateur, créer des fichiers, les supprimer... Je présente également des installateurs de logiciels libres en ligne de commande et certains de ces logiciels libres qui peuvent être utilisées directement dans le terminal. La première version de ce document date du 20 avril 2013, j'utilisais alors MacOS 10.8 (Mountain Lion). La dernière version du document date du 18 octobre 2015 et mon système d'exploitation est MacOS 10.11 (El Capitan)."
+date: "3 Mai 2016"
 ---
 
 
 
 # Avant-propos
 
-## Mes ressources
+## Avertissement
 
-L'ensemble de ce qui suit des heures de recherche sur Internet à essayer de résliser tellle ou telle tâche en ligne de commande. J'ai aussi profité de différents échanges avec des amis qui utilisent aussi le terminal. Voici quelques ressources qui vous seront, je l'espère, utiles :
+L'ensemble de ce qui suit est le fruit de nombreuses heures d'apprentissage sur Internet.
+En cherchant des solutions à des problèmes concret pour réaliser différentes opérations, j'ai accumulé de nombreuse astuces qui facilitent aujourd'hui mon travail. Ne trouvant pas une telle compilation déjà toute écrite (ce qui n'est pas étonné car une combinaison d'utilisation est spécifique), j'ai décidé de les rassembler dans un même document.
+Pour tout ce qui est informatique, je suis autodidacte et je n'ai certainement pas des bases théoriques suffisantes. Cela dit, je communique quotidiennement avec mon ordinateur sous forme de lignes de commande. Ainsi, le document présent est le résultat d'une approche très pragmatique et égo-centrée du terminal.
+Néanmoins, je suis persuadé que beaucoup de matériel ici présenté peut-être utile à beaucoup d'utilisateur même occasionnel du terminal.
+
+
+
+## Mes sources
+
+Il y a beaucoup de source d'information sur Internet mais je n'ai pas trouvé une complilation d'usage multiple du terminal, alors je l'ai fait, au moins pour moi. Voici quelques ressources qui vous seront, je l'espère, utiles :
+
+- Généralités
+  - [Terminal informatique](https://fr.wikipedia.org/wiki/Terminal_informatique)
+  - [Shell Unix](https://fr.wikipedia.org/wiki/Shell_Unix)
 
 - Base du Terminal
     - [graffitix](http://www.graffitix.fr/index.php?pg=MXTeBT1)
@@ -45,12 +56,12 @@ L'ensemble de ce qui suit des heures de recherche sur Internet à essayer de ré
     - [A vos mac](http://www.magazine-avosmac.com/avosmacV4/) (il faut être abonné).
     - [OSX daily](http://osxdaily.com/)
 - Sites généralistes :
-    - Regarder sur openclassroom (ancien site du zéro)
+    - Regardez sur openclassroom (ancien site du zéro)
     - Beaucoup d’astuces sur [Comment ça marche](http://www.commentcamarche.net/faq/4801-guide-d-utilisation-du-shell-pour-debutant) (pour Linux mais beaucoup sont directement utilisables)
 
 - Avancé :
     - [Faire des scripts bash](http://abs.traduc.org/abs-fr/ch01.html)
-- Le Bash est un langage commun aux systémes UNIX, dans le cas de Linux, la documentation est très abondante et la plupart des commandes sont identiques.
+    - Le Bash est un langage commun aux systémes UNIX qui a une [documentation officielle](https://www.gnu.org/software/bash/manual/bashref.html).
 
 
 
@@ -70,30 +81,51 @@ Tout au long du document, j'emploie plusieurs abbréviations:
 - entr : la touche entrée
 - « adr » désigne un chemin et « adr/fichier1 », le chemin jusqu'au fichier _fichier1_ ;  de même « adr/dossier » désigne le chemin pour accéder à un dossier précis.
 
-- CPU : _Central Processing Unit_, unité centrale de traitement
-- GPU : _Grpahics Processing Unit_, processeur graphique
+- CPU : _Central Processing Unit_, unité centrale de traitement.
+- GPU : _Grpahics Processing Unit_, processeur graphique.
 
+
+
+
+
+
+# L'application _Terminal_
 
 
 ## Quelques généralités sur l’application _Terminal_
 
-L'application _Terminal_ est une console pour de nombreux langages de programmation. Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet de piloter son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé dans la suite du document. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
- <!-- L'application Terminal est finalement une interface graphique de terminal, il existe d'autres alternatives http://www.iterm2.com/features.html. -->
+## Un terminal et l'application Terninal
+
+Le mot terminal fait référence au 'terminal informatique' qui désigne la partie d'un réseaux informatiques avec lequel un humain peut communiquer.
+L'application _Terminal_ est une console pour de nombreux langages de programmation. Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet d'interagir avec son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé plus bas. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
+
+## Autre Terminal Alternative
+
+Linux
+L'application Terminal est un des terminal possibles, il existe des alternatives comme [iTerm2](https://www.iterm2.com/index.html).
 
 
-## Raccourcis clavier (par défaut) du terminal
-
-Ces raccourcis sont valides pour le bash (le langage pas défaut), mais aussi pour différentes applications. Cependant, ils peuvent aussi être complètement occultés dans certains modes du terminal. Ainsi si vous utilisez l’éditeur de text _nano_ les raccourcis ne sont plus valides (il y en a d'autres).
-<!-- Enfin il existe un fichier : « .inputrc » pour modifier cela, je parle ci-dessous de ce qui se passe par défaut. -->
+## Raccourcis clavier (par défaut) de l'application  terminal
 
 
-### Gérer les fenêtres et les onglets du terminal
+La configuration des raccourcis peut se faire via l'édition d'un ficher '.inputrc' dans le dossier utilisateur (à créer).
 
-- Créer une nouvelle fenêtre : **cmd + N**
+Par déafault on a
+Ces raccourcis sont valides pour le bash (le langage pas défaut), mais aussi pour différentes applications. Cependant, ils peuvent aussi être complètement occultés dans certains modes du terminal. Ainsi, si vous utilisez l’éditeur de text _nano_ les raccourcis ne sont plus valides (il y en a d'autres).
+
+
+
+
+## Les racourcis  de l'application terminal
+
+Il s'agit des raccourcis clavier par défault de MacOS pour cette application.
+
+- Créer une nouvelle fenêtre : **cmd + N**  
 - Créer un nouvel onglet : **cmd + T**
 - Diviser la fenêtre du terminal : **cmd + D**
 - Annuler la division : **cmd + shift + D**
-- Efface le contenu d'un onglet **cmd+K** (ou **ctrl+L**, ou utiliser la commande **clear**)
+- Efface le contenu d'un onglet : **cmd+K** (ou **ctrl+L**, ou utiliser la commande **clear**)
+- Effacer la dernière ligne de commande et le résultat accosié
 - Sauver le conteniu d'un onglet sous forme de text : **cmd+S**
 - Imprimer le contenu de la console : **cmd+P**
 
@@ -152,26 +184,32 @@ De manière générale, une commande dans un langage donné, est un ensemble de 
 - Utilisation d’une commande. Dans « Terminal », il est nécessaire d’entrer le nom de la commande puis éventuellement l’option qui est en général un tiret ("-") et une ou ou deux lettres puis éventuellement des paramètres suivis éventuellement de l’objet qu’elle concerne (souvent un fichier représenter par son chemin) : nomcommande -option1 -option2 paramètre objet (il suffit alors de taper **entr**). Les options peuvent être mises les unes à la suite des autres -option1option2.
   - Ex 1 :
 
-  ls  
+```bash
+  ls
+```
 
-    Il n’y a que la commande _ls_ qui liste les fichiers du repertoire  courant,
-    - Ex 2 :
 
-    ls -a
 
-    la même commande avec une option -a (afficher tous les fichiers,  même les fichiers cachés),
+Il n’y a que la commande _ls_ qui liste les fichiers du repertoire  courant,
+  - Ex 2 :
+
+```bash
+  ls -a
+```
+
+la même commande avec une option -a (afficher tous les fichiers,  même les fichiers cachés),
 
     - Ex 3 :
 
     > ls -a ~/Documents
 
-    je rajoute le répertoire pour lequel je veux la listes de tous les  fichiers
+je rajoute le répertoire pour lequel je veux la listes de tous les  fichiers
 
     - Ex 4 :
 
     > mkfile -nv 100k ~/Desktop/exemple1.txt
 
-    Crée un fichier avec deux options *-n* et *-v* (raccourcis en   *-nv*), le paramètre 100k (taille du fichier) et le nom du fichier    *~/Desktop/exemple1.txt*, L'adresse d’un fichier qui va être créé.
+Crée un fichier avec deux options *-n* et *-v* (raccourcis en   *-nv*), le paramètre 100k (taille du fichier) et le nom du fichier    *~/Desktop/exemple1.txt*, L'adresse d’un fichier qui va être créé.
 
 - Une commande est en fait un exécutable dont on peut facilement trouver l’adresse : **which + nom_commande**, une recherche large est possible avec : **locate + nom_commande**
 - Les commandes ne sont pas sensible à la casse. ex : ls = LS = lS = Ls. _Attention!!_ ce n’est pas le cas pour les options.
@@ -732,3 +770,22 @@ sudo nano /etc/apache2/users/username.conf
 ## FFmpeg
 
 ffmpeg -i input_file.mp4 -acodec copy -vcodec copy -f mov output.mov
+
+
+for file in *.Rdata; do mv "$file" "${file/.Rdata/_1.Rdata}"; done
+
+
+<!-- Dans le cas de multiples extensions :
+
+nsoualem@gold: -> FILE=archive.tar.gz
+nsoualem@gold: -> echo ${FILE%%.*}
+archive
+nsoualem@gold: -> echo ${FILE%.*}
+archive.tar
+nsoualem@gold: -> echo ${FILE#*.}
+tar.gz
+nsoualem@gold: -> echo ${FILE##*.}
+gz -->
+
+
+https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
