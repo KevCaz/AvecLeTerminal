@@ -15,6 +15,7 @@ header-includes:
   - \fancyfoot[CO,CE]{}
   - \fancyfoot[LE,RO]{\thepage}
 citecolor: {0.04, 0.08, 0.2}
+numbersections: true
 #urlcolor: {0.04, 0.08, 0.2}
 #linkcolor: {0.27, 0.27, 0.35}
 toc: true
@@ -27,12 +28,19 @@ date: "3 Mai 2016"
 
 
 
-# Avant-propos
+
+
+
+\newpage
+
+\section*{Avant-propos}
+\addcontentsline{toc}{chapter}{Avant-propos}
+
 
 ## Avertissement
 
 L'ensemble de ce qui suit est le fruit de nombreuses heures d'apprentissage sur Internet.
-En cherchant des solutions à des problèmes concret pour réaliser différentes opérations, j'ai accumulé de nombreuse astuces qui facilitent aujourd'hui mon travail. Ne trouvant pas une telle compilation déjà toute écrite (ce qui n'est pas étonné car une combinaison d'utilisation est spécifique), j'ai décidé de les rassembler dans un même document.
+En cherchant des solutions à des problèmes concrets pour réaliser différentes opérations, j'ai accumulé de nombreuse astuces qui facilitent aujourd'hui mon travail. Ne trouvant pas une telle compilation déjà toute écrite (ce qui n'est pas étonné car une combinaison d'utilisation est spécifique), j'ai décidé de les rassembler dans un même document.
 Pour tout ce qui est informatique, je suis autodidacte et je n'ai certainement pas des bases théoriques suffisantes. Cela dit, je communique quotidiennement avec mon ordinateur sous forme de lignes de commande. Ainsi, le document présent est le résultat d'une approche très pragmatique et égo-centrée du terminal.
 Néanmoins, je suis persuadé que beaucoup de matériel ici présenté peut-être utile à beaucoup d'utilisateur même occasionnel du terminal.
 
@@ -43,23 +51,30 @@ Néanmoins, je suis persuadé que beaucoup de matériel ici présenté peut-êtr
 Il y a beaucoup de source d'information sur Internet mais je n'ai pas trouvé une complilation d'usage multiple du terminal, alors je l'ai fait, au moins pour moi. Voici quelques ressources qui vous seront, je l'espère, utiles :
 
 - Généralités
+
   - [Terminal informatique](https://fr.wikipedia.org/wiki/Terminal_informatique)
   - [Shell Unix](https://fr.wikipedia.org/wiki/Shell_Unix)
 
 - Base du Terminal
+
     - [graffitix](http://www.graffitix.fr/index.php?pg=MXTeBT1)
+
 - Liste des commandes
+
     - [ss64](http://ss64.com/bash/)
 
-- Astuces à la volée :
+- Astuces à la volée
+
     - [maclife](http://www.maclife.com/search/terminal%20101)
-    - [A vos mac](http://www.magazine-avosmac.com/avosmacV4/) (il faut être abonné).
+    - [A vos mac](http://www.magazine-avosmac.com/avosmacV4/) (il faut être abonné)
     - [OSX daily](http://osxdaily.com/)
-- Sites généralistes :
+
+- Sites généralistes
     - Regardez sur openclassroom (ancien site du zéro)
     - Beaucoup d’astuces sur [Comment ça marche](http://www.commentcamarche.net/faq/4801-guide-d-utilisation-du-shell-pour-debutant) (pour Linux mais beaucoup sont directement utilisables)
 
-- Avancé :
+- Avancé
+
     - [Faire des scripts bash](http://abs.traduc.org/abs-fr/ch01.html)
     - Le Bash est un langage commun aux systémes UNIX qui a une [documentation officielle](https://www.gnu.org/software/bash/manual/bashref.html).
 
@@ -89,23 +104,50 @@ Tout au long du document, j'emploie plusieurs abbréviations:
 
 
 
-# L'application _Terminal_
 
 
-## Quelques généralités sur l’application _Terminal_
-
-## Un terminal et l'application Terninal
-
-Le mot terminal fait référence au 'terminal informatique' qui désigne la partie d'un réseaux informatiques avec lequel un humain peut communiquer.
-L'application _Terminal_ est une console pour de nombreux langages de programmation. Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet d'interagir avec son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé plus bas. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
-
-## Autre Terminal Alternative
-
-Linux
-L'application Terminal est un des terminal possibles, il existe des alternatives comme [iTerm2](https://www.iterm2.com/index.html).
 
 
-## Raccourcis clavier (par défaut) de l'application  terminal
+
+
+# Le terminal et l'application _Terminal_
+
+
+## Sémantique
+
+Le mot terminal fait référence au 'terminal informatique' qui désigne la partie d'un réseau informatique avec lequel un humain peut communiquer. Cette communication consiste à lui faire exécuter une ou plusieurs opérations. Aujourd'hui, pour la plupart des utilisateurs, le travail avec l'ordinateur peut se faire de manière intuitive avec l'utilisation d'une interface graphique, sans utiliser de ligne de commande. En raison de l'utilisation de ligne de commande, les fenêtres d'invite de commandes sont appelées 'terminal'.
+
+De manière générale, pour un langage donné, une commande est un ensemble de charactères interprété par l'ordinateur et qui induit l'exécution d’une tâche corespondante par celui-ci (si la commande est correctement entrée). Ces commandes peuvent être agencées par l'utilsateur pour mener à bien un ensemble d'opération générant des suite de cacractères plus ou oins complexe. Pour l'utilsateur novice qui utilise n'a pas l'habitude de l'emploie de ligne de commande, les suites de clics (ou de raccourcis), sont remplacées par des commandes qu'il faut connaître (ou savoir retrouvées). Dialoguer avec l'ordinateur demande d'avoir un langage commun. Par défautlt la fenêtre s'ouvre et c'est le langage Bash qui est utilisé.
+
+L'application terminal sous MacOSX
+L'application _Terminal_ est une console pour de nombreux langages de programmation.
+Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet d'interagir avec son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé plus bas. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
+
+L'application _Terminal_ est une interface graphique possible et native sous MacOSX, il en existe une seconde très poplaire : [iTerm2](https://www.iterm2.com/index.html).
+
+[Xterm](http://invisible-island.net/xterm/xterm.html)
+
+Sous Linix [Le terminal GNU/Linux](https://doc.ubuntu-fr.org/terminal)
+
+https://doc.ubuntu-fr.org/terminal
+
+Utilisez l'une ou l'autre est, éà mon sens, une question de préférence en terme de faciliter dMutilisatuoib de design.
+Quand on utilise une langage dans une fenêtre de terminal ce n'est pas le choix du terminal qui change grand chose.
+
+
+## Pourquoi utiliser le terminal
+
+- on peut faire la plupart (même toutes) des actions sans, alors pourquoi ?
+- tout faire en dans une même fenêtre,
+- améliorer son workflow /
+- les emballages bien que utiles consomme des ressources.
+- parfois des actions qu'on crois possible qu'avec certains logiciels payants sont possibke pas avec des freware en ligne de commandes
+- ça ouvre un monde de software puissant qui ne sont pas toujours dans un emballage GUI améliorer notre literacy
+- invite à mieux conprendre son ordinateur
+
+
+
+## Raccourcis clavier (par défaut) de l'application terminal
 
 
 La configuration des raccourcis peut se faire via l'édition d'un ficher '.inputrc' dans le dossier utilisateur (à créer).
@@ -116,19 +158,28 @@ Ces raccourcis sont valides pour le bash (le langage pas défaut), mais aussi po
 
 
 
-## Les racourcis  de l'application terminal
+## Les racourcis de l'application terminal
 
-Il s'agit des raccourcis clavier par défault de MacOS pour cette application.
+Il s'agit des raccourcis clavier par défault de MacOS 10.11.4 pour cette application.
+Vous les retrouverez dans le  menu de la console, je liste ceux que je pense les plus utiles.
+Les raccourcis avec les cmd reste valides quel que soit l'utilisation de la console. Ce n'est pas
+le cas pour ceux qui utilisent la touche **ctrl** qui dépende de l'utilisation ils sont valides au quand
+la console est utiliser pour entrer des commandes Bash (mais parfois dans d'autres situations aussi).
+
+### Gestion des fenêtres
 
 - Créer une nouvelle fenêtre : **cmd + N**  
 - Créer un nouvel onglet : **cmd + T**
 - Diviser la fenêtre du terminal : **cmd + D**
 - Annuler la division : **cmd + shift + D**
 - Efface le contenu d'un onglet : **cmd+K** (ou **ctrl+L**, ou utiliser la commande **clear**)
-- Effacer la dernière ligne de commande et le résultat accosié
+- Effacer la dernière ligne de commande et le(s) résultat(s) associé(s) : **cmd+L**
+- Faire une recherche dans le contenu de la console : **cmd+F**
 - Sauver le conteniu d'un onglet sous forme de text : **cmd+S**
 - Imprimer le contenu de la console : **cmd+P**
 
+
+### Naviguer dans la console
 
 En utilisant le terminal, il est fréquent d'accumuler bien plus de lignes dépassant largement la hauteur de la fenêtre du terminal, afin de naviguer dans le contenu d'un onglet on peut utiliser la barre de défilement, mais aussi :
 
@@ -138,14 +189,15 @@ En utilisant le terminal, il est fréquent d'accumuler bien plus de lignes dépa
 - Descendre d'une page : **fn + flèche de gauche**
 
 
-
 ### Naviguer au sein d'une ligne de commande
 
-- Avancer d’un symbole : flèche de droite (ou **ctrl+p**)
-- Reculer d’un symbole : flèche de gauche (ou **ctrl+b**)
-- Aller de mot en mot (avant ou arrière) : **alt+flèche**
+- Avancer d’un symbole : **flèche de droite** (ou **ctrl+p**)
+- Reculer d’un symbole : **flèche de gauche** (ou **ctrl+b**)
+- Avancer d’un symbole : **alt + flèche de droite**
+- Avancer d’un symbole : **alt + flèche de droite**
 - Aller au début d’une ligne : **ctrl + A**  
 - Aller à la fin d’une ligne : **ctrl + E**  
+- Aller d'un bout de la ligne à l'autre : **ctrl + X** (2 fois)  
 
 
 ### Ecrire efficacement une ligne de commande
@@ -155,59 +207,69 @@ En utilisant le terminal, il est fréquent d'accumuler bien plus de lignes dépa
     1. il n’y a pas de correspondance avec un nom de fichier / de commande / ... existant,
     2. plusieurs choix sont disponibles, dans ce cas, en utilisant **tab** de nouveau, on affiche la liste des possibilités.
 
-- Effacer le caractère à gauche du curseur : **backspace (le classique)**
-- Effacer le caractère à droite du curseur :  **ctrl + D**
+- Effacer le caractère à gauche du curseur : **backspace** (le classique) ou **ctrl + H**
+- Effacer le caractère à droite du curseur :  **ctrl + D** attention si utilisé sur une ligne vite, entraîne la déconnection)
 - Effacer tout ce qui se trouve à gauche du curseur : **ctrl + U**
 - Effacer tout ce qui se trouve à droite du curseur : **ctrl + K**
 - Effacer le mot juste à gauche du curseur : **ctrl + W**
 - Inverser les deux dernières lettres : **ctrl + T**
 - Coller la saisie précédente : **ctrl + Y**
-- Rappeler la dernière commande : flèche du haut (ou **ctrl+p**)
-- Revenir vers une commande plus récente : flèche du bas (ou **ctrl+n**)
+- Rappeler la dernière commande : **flèche du haut** (ou **ctrl+P**)
+- Revenir vers une commande plus récente : **flèche du bas** (ou **ctrl+N**)
 - Recherche dans l’historique : **ctrl + R**, il suffit alors d'entrer les premières charactère de la ligne ayant été utilisée précedemment.
 
 
 ### Executer/arrêter une ligne de commande
 
-- Exécuter une commande : écrire la commande puis **entr**
+- Exécuter une commande : écrire la commande puis **entr** (ou **ctrl+J** ou )
 - Annuler l’exécution d’une commande : **ctrl + C**
 - Stopper une tâche : **ctrl + Z**
+- Déconnection de la session terminal: **ctrl + D** (sur une ligne vide)
 
- NB : Pour ne pas entrer manuellement un chemin, on peut faire glisser le dossier ou le fichier concerné, son chemin apparaîtra alors.
+ **NB** : Pour ne pas entrer manuellement un chemin, on peut faire glisser le dossier ou le fichier concerné, son chemin apparaîtra alors.
 
 
 
-## Que sont les commandes ?
 
-De manière générale, une commande dans un langage donné, est un ensemble de charactères interprétés par l'ordinateur comme une instruction induisant la réalisation d’une tâche par celui-ci (si la commande est correctement entrée). Quelques spécifications pour le langage bash :
 
-- Utilisation d’une commande. Dans « Terminal », il est nécessaire d’entrer le nom de la commande puis éventuellement l’option qui est en général un tiret ("-") et une ou ou deux lettres puis éventuellement des paramètres suivis éventuellement de l’objet qu’elle concerne (souvent un fichier représenter par son chemin) : nomcommande -option1 -option2 paramètre objet (il suffit alors de taper **entr**). Les options peuvent être mises les unes à la suite des autres -option1option2.
-  - Ex 1 :
+# Le langage Bash, pour dialoguer avec son ordinateur
+
+
+## Quelques considérations historiques
+
+Quand on ouvre l'application _Terminal_, nous avons une fenêtre de dans laquelle l'utilisateur peut
+communiquer avec lordinateur en utilsant ls langage Bash.
+
+
+## Les commandes du langage Bash
+
+Pour le Bash, les commandes sont une suite de charactères qui forme le nom de la commande suivi éventuellement d'une ou plusieurs options reconnaissable par un tiret ("-") et une ou ou deux lettres puis éventuellement des paramètres suivis éventuellement de l’objet qu’elle concerne (souvent un fichier représenter par son chemin) : nomcommande -option1 -option2 paramètre objet (il suffit alors de taper **enter** ou **cmd + M**). Les options peuvent être mises les unes à la suite des autres -option1option2.
+
+Commencons par une commande seule :
 
 ```bash
-  ls
+  pwd
 ```
 
-
-
-Il n’y a que la commande _ls_ qui liste les fichiers du repertoire  courant,
-  - Ex 2 :
+Une fois entré, nous avons un résultat associé qui est le chemin absolu du répertoire courant.
+Nous entrons maintenant une nouvelle commande avec un option :
 
 ```bash
   ls -a
 ```
 
-la même commande avec une option -a (afficher tous les fichiers,  même les fichiers cachés),
+Cette commande liste le contenu du répertoire courant. L'option -a permet de voir tous les fichiers,
+même les fichiers cachés. Nous allons maitenant ajouter un chemin pour lequel nous aimerions avoir la liste des fichiers:
 
-    - Ex 3 :
+```bash
+  ls -a ~/Documents
+```
 
-    > ls -a ~/Documents
+Enfin, une nouvelle commande poue laquelle je rajoute une commande qui nécessite un paramètre
 
-je rajoute le répertoire pour lequel je veux la listes de tous les  fichiers
-
-    - Ex 4 :
-
-    > mkfile -nv 100k ~/Desktop/exemple1.txt
+```bash
+  mkfile -nv 100k ~/Desktop/exemple1.txt
+```
 
 Crée un fichier avec deux options *-n* et *-v* (raccourcis en   *-nv*), le paramètre 100k (taille du fichier) et le nom du fichier    *~/Desktop/exemple1.txt*, L'adresse d’un fichier qui va être créé.
 
@@ -219,59 +281,112 @@ Crée un fichier avec deux options *-n* et *-v* (raccourcis en   *-nv*), le para
 - Parfois un droit d’administrateur est requis pour certaines actions, typiquement lorsqu'un message "permission denied" apparaît suite à l’entrée de la commande. Pour pouvoir exécuter la commande il faut avoir les droits d'administrateurs et faire précéder la commande de : **sudo** (« super user do »).Le mot de passe associé au compte administrateur est alors demandé.
 
 
+## S'informer d'une commande
+
+```bash
+  man nomcommande
+```
+
+Les commentaires sont précédents '#'
 
 
-### Les commandes basiques du _bash_  
-
-Dans la suite je présente différentes commandes du bash. Je ne détaillerai que très peu d'options, pour les connaître, utiliser le manuel. Dans le _bash_, le charactère \# est utilisé pour introduire des commentaires.
 
 
-#### Naviguer à travers les différents répertoires
 
 
-- Changer de répertoire :
 
-  > cd adr  
-  > \# Exemple :  
-  > cd /dossiera/dossierb/dossierC/file1.txt
 
-  - quelques cas particuliers :
 
-    > \# Aller à la racine :  
-    > cd /  
-    > \# Aller au dossier utilisateur :  
-    > cd ~  
-    > \#  Aller au dossier supérieur :  
-    > cd ..
+
+
+# Les commandes basiques du _bash_  
+
+Dans cette section, je présente les commandes fréquemnemt utilisées pour
+faire les opérations de base. Pour illuster he cocidérauaire des dossiers 'dossier '
+
+
+
+## Naviguer à travers les différents répertoires
+
+
+### Chemins relatifs/ Chemins absolu
+
+répertoire courant
+
+### Connaitre le répertoire courant et en changer
 
 - Connaître le répertoire actuel :
 
-  > pwd
+```bash
+  pwd
+```
+
+- Changer de répertoire :
+
+```bash
+  cd /dossiera/dossierb/dossierC/file1.txt
+```
+
+  - quelques cas particuliers :
+
+```bash
+  cd /  # aller à la raison  
+  cd ~  # aller au dossier utilisateur  
+  cd .. #aller au dossier supérieur
+```
+
+
+### Afficher le comtenu d'un répertoire
 
 - Lister les fichiers d'un dossier :
 
-  > ls adr
+```bash
+  ls adr
+```
 
-  si aucun nom de dossier n'est donné, ce sont les fichiers du répertoire courant qui sont listés. Option *-a* pour voir les fichiers cachés et option *-l* pour obtenir des informations sur les fichiers (date de modification et qui est propriétaire).
+si aucun nom de dossier n'est donné, ce sont les fichiers du répertoire courant qui sont listés. Option *-a* pour voir les fichiers cachés et option *-l* pour obtenir des informations sur les fichiers (date de modification et qui est propriétaire).
 
-  > ls -alth
+```bash
+  ls adr -alth
+```
+
 
 - Connaître la taille des fichiers
 
-  > du adr
+```bash
+  du adr
+```
 
-  option *-s* pour faire la somme de la taille des fichiers d'un dossier et option *-h* pour avoir des nombres en unité facile à lire. ex : du -sh ~/Documents
+option *-s* pour faire la somme de la taille des fichiers d'un dossier et option *-h* pour avoir des nombres en unité facile à lire. ex :
+
+```bash
+    du -sh ~/Documents
+```
+
+```bash
+  wc
+```
+
+
+## Créer des fichiers et des dossiers et les manipuler
+
+### Création
 
 - Créer un nouveau fichier :
 
-  > mkfile + adr/nom_fichier
+```bash
+  mkfile adr/nom_fichier
+```
 
-  On peut préciser la taille du fichier  ex:
+- On peut préciser la taille du fichier  ex:
     > mkfile 140k truc.txt
 
 - Créer un nouveau dossier :
 
   > mkdir + adr/nom_dossier
+
+
+### Copie
 
 - Copier un fichier :
 
@@ -283,9 +398,13 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 
   > cp -R adr1/dossier1 adr2/dossier2
 
+
+### Déplcer des fichier
 - Déplacer un fichier ou un dossier :
 
   > mv adr1/fichier1 adr2/fichier2  
+
+### Supprimer un fichier
 
 - Suppimer un fichier :
 
@@ -300,6 +419,9 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 
   > rm -r ~	/.Trash/*
 
+
+### Ourvir un fichier
+
 - Ouvrir un fichier :
 
   > open + adr/fichier
@@ -308,28 +430,31 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 
   option *-a* permet de spécifier l’application avec laquelle pouvrir le fichier, ex: open -a Finder / )
 
+
+### Gérer les droits
+
 - Changer le propriétaire d’un fichier :
 
   > chown owner[:group] adr/fichier
 
-  Défini à qui appartient le fichier.
+Défini à qui appartient le fichier.
 
 - Changer les droits d'accès d'un fichier :
 
   > chmod mode adr/fichier
 
-  Les modes permettent de définir les actions possibles sur un fichiers pour tous types d'utilisateurs, propriétaire ou non du fichier. Les modes s'écrivent sous forme d'un nombre précisant les droits des utilisateurs sur un fichier.
+Les modes permettent de définir les actions possibles sur un fichiers pour tous types d'utilisateurs, propriétaire ou non du fichier. Les modes s'écrivent sous forme d'un nombre précisant les droits des utilisateurs sur un fichier.
 
 
 - Imprimer un fichier :
 
   > lpr adr/fichier
 
-  Attention, tous les types de fichiers ne sont pas supportés.
+Attention, tous les types de fichiers ne sont pas supportés.
 
 
 
-## Éteindre/redémarrer et relancer le Finder
+## Gérer l'ordinateur
 
 - Eteindre :
 
@@ -354,8 +479,6 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
   > sudo killall Finder
 
 
-## Gérer l’ordinateur
-
 ### La date
 
 - Obtenir la date :
@@ -373,31 +496,37 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
 
 ### Veille de l'ordinateur et suspensions des executions
 
-  - Laisser l’ordinateur en activité (pas de veille) :
+- Laisser l’ordinateur en activité (pas de veille) :
 
-    > caffeinate
+```bash
+  caffeinate
+```
 
-    option *-d* pour que l'écran ne se mette pas en veille, option *-t* pour choisir le temps (en seconde). Ex : caffeinate -dt 600 => permet de maintenir l’ordinateur mais aussi l’écran en activité pendant 10 minutes.
+option *-d* pour que l'écran ne se mette pas en veille, option *-t* pour choisir le temps (en seconde). Ex : caffeinate -dt 600 => permet de maintenir l’ordinateur mais aussi l’écran en activité pendant 10 minutes.
 
-  - Suspendre les exécutions pendant une durée « tps » exprimé en secondes :
+- Suspendre les exécutions pendant une durée « tps » exprimé en secondes :
 
-    > sleep + tps
+```bash
+  sleep + tps
+```
 
-    Ex : si j'utilise "sleep 10" et que j’essaye ensuite d’entrer la commande ls, je devrais attendre la fin des des 10 secondes pour que la commande soit exécutée.
+Ex : si j'utilise "sleep 10" et que j’essaye ensuite d’entrer la commande ls, je devrais attendre la fin des des 10 secondes pour que la commande soit exécutée.
 
 
 ### Visualiser l'acitivité de son ordinateur
 
 - Visualiser l'activité :
 
-  > top
+```bash
+  top
+```
 
-  Cette commande affiche un grand tableau, la table des processus (Table Of Processes). Un processus est une tâche entreprise par l'ordinateur qui est répertorié tant qu'elle a court. Parmi les colonnes, on a :
-    1. **PID** : le numéro d'identité du processus
-    2. **COMMAND** : le nom du processus
-    3. **%CPU** : le pourcentage CPU utilisé, il s'agit d'une mesure unstantannée de la charge de travail du processeur (on a jusqu'à n*100% de CPU disponible ou n est le nombre de coeur.).
-    4. **%TIME** : la durée d'activité du processus
-    4. **MEM** : la mémoire utilisée par le processus
+Cette commande affiche un grand tableau, la table des processus (Table Of Processes). Un processus est une tâche entreprise par l'ordinateur qui est répertorié tant qu'elle a court. Parmi les colonnes, on a :
+  1. **PID** : le numéro d'identité du processus
+  2. **COMMAND** : le nom du processus
+  3. **%CPU** : le pourcentage CPU utilisé, il s'agit d'une mesure unstantannée de la charge de travail du processeur (on a jusqu'àn*100% de CPU disponible ou n est le nombre de coeur.).
+  4. **%TIME** : la durée d'activité du processus
+  5. **MEM** : la mémoire utilisée par le processus
 
   Une fois que l'on affiche le tableau, le terminal fonctionne un peu différemment. Pour connaître ce qu'on peut faire, il suffit d'entrer **?**. Une action pratique est de trier le tableau, il fa=ut alors taper **o** puis le nom de la colonne, par exemple **cpu** pour afficher par utilisation de cpu et **cpu** pour trier par quantité de mémoire utilisée. Pour quitter le tableau, entrer **q**.
 
@@ -426,6 +555,9 @@ Dans la suite je présente différentes commandes du bash. Je ne détaillerai qu
   - Pour faire revenir le processus au premier plan : fg %njob (premier numéro sur la gauche donné par la commande jobs)
   - Un processus stoppé peut être passé à l’arrière plan : bg %njob
   - Avec top, on peut avoir accès aux identités des processus : kill pid, supprime le processus ; kill -stop pid le met en pause, kill -cont pid le réactive.
+
+
+Ajouter ctrl Z / bg / fg pour un stopper et reprendre un processus
 
 
 ### Disques et clef USB
@@ -504,11 +636,11 @@ ou en1 si « en2 » dans ifconfig existe
 
 
 
-### Recherche de fichiers
+## Recherche de fichiers
 
 Nous sommes souvent en train de rechercher des fichiers et bien que « Spotlight » soit souvent d’une grande aide il est parfois difficile d’avoir exactement ce que l’on veut. Pour des recherches très efficace, il existe des commandes bash d’une très grande efficacité mais qui demandent un peu d’entrainement !
 
-#### expressions régulières
+### Les expressions régulières
 grep
 grep -rwl niche ~/Desktop/interactionLS/
 options :
@@ -550,7 +682,7 @@ $ fin
 ——————
 
 
-### chercher un fichier
+### Chercher un fichier
 
 > find ~/ -iname ‘evol’
 > find ~/Desktop -iname '\*.txt'
@@ -575,7 +707,35 @@ using or (royal or society)
 > mdfind -onlyin ~/Movies couleur
 
 
-### Créer un alias
+
+
+
+
+
+
+# Les éditeurs de texte
+
+## Vim / emacs / pico
+
+
+
+
+
+
+
+
+# Faire des scripts Bash
+
+
+
+
+
+
+# Améliorer l'utilisation du Bash
+
+## Les fichiers inputrc et bash_profile
+
+## Créer un alias
 
 - Lorsqu’on utilise à répétition une commande, il peut être intéressant de créer un alias. Par exemple, j’ai souvent besoin d’aller dans mon dossier de thèse : cd ~/Documents/PHD,  j’aimerais simplement taper «phd», pour cela : alias php ‘cd ~/Documents/PHD’
 - De manière générale le principe est le suivant :
@@ -592,14 +752,70 @@ pour que ce soit ok
 Ex : si j’utilise très fréquemment ls -la tout le temps => je peux alors créer l’alias : alias ls ‘ls -la’ et alors pour avoir le ls d’origine => la commande : \\ls est alors le ls par défaut.
 
 
-screen
-screen -d
-http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/
+
+
+
+
+
+
+
+
+
+# Connection à distance avec le terminal
+
+## Les protcoles FTP et SSH
+
+
+```bash
+  ftp
+```
+
+=> ncftp
+
+
+## Commandes SSH
+
+```bash
+  ssh
+```
+
+## Commandes FTP
+
+```bash
+  scp
+```
+
+
+
+
+```bash
+  screen
+```
+
+```bash
+  screen -d
+```
+
+[voir](http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Les gestionnaires de paquets sous MacOS
 
-Il s'agit d'application qui facilitent l'installation de logiciels libres. Ces différents logiciels sont installés facilement en quelques lignes de commandes. C'est une pratique qui existe par défaut dans les différentes distributions de Linux (apt-get, yum,...) mais qui doit être installé pour MacOS. Il existe plusieurs gestionnaires de paquets : Fink, MacPort et Homebrew. Je présente MacPort et Homebrew dans les sections qui suivent. Je n'utilise plus MacPort depuis mi-2014, je suis passé à Homebrew, il se peut donc que certaines indications ne soient pas correctes. Une installtion propore
+
+Il s'agit d'application qui facilitent l'installation de logiciels libres. Ces différents logiciels sont installés facilement en quelques lignes de commandes. C'est une pratique qui existe par défaut dans les différentes distributions de Linux (apt-get, yum,...) mais qui doit être installé pour MacOS. Il existe plusieurs gestionnaires de paquets : Fink, MacPort et Homebrew. Je présente MacPort et Homebrew dans les sections qui suivent. Je n'utilise plus MacPort depuis mi-2014, je suis passé à Homebrew, il se peut donc que certaines indications ne soient pas correctes. Une installtion propore + GEM + apm + Python
 
 
 ## MacPorts
@@ -706,86 +922,45 @@ Désinstallation :
   brew update; brew upgrade; brew cleanup; brew cask cleanup;
 
 
-### Mon installation
-
-> brew install gdal geos proj r imagemagick ffmpeg postgresql pandoc pandoc-citeproc valgrind
-
-NB : cask est une extension de brew il suffit d'utiliser brew cask ou mettre le chemin complet:
-
-> brew cask install julia mactex dropbox copy rstudio atom filezilla libreoffice gimp inkscape mendeley-desktop xquartz appcleaner vlc
-
-
-> brew tap homebrew/science
-
-> brew install r imagemagick ffmpeg postgresql lynx
-
-NB : cask est une extension de brew il suffit d'utiliser brew cask ou mettre le chemin complet:
-
-> brew cask install java julia mactex dropbox copy rstudio
-> brew install Caskroom/cask/libreoffice Caskroom/cask/appcleaner Caskroom/cask/atom Caskroom/cask/xquartz Caskroom/cask/filezilla
-
-> sudo chown -R $(whoami):admin /usr/local
-
-<!-- Jekyll -->
-<!-- OrcID gem install faraday
-gem install faraday_middleware -->
-
-# Developpement web
-
-<!-- gem install jekyll -->
-MacOS 10.10 http://ole.michelsen.dk/blog/setup-local-web-server-apache-php-osx-yosemite.html
-MacOS 10.11 http://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-osx-10-11-el-capitan/
-
-sudo apachectl start
-sudo apachectl restart
-httpd -v
-
-Setup local web server with Apache and PHP on OS X El capitan
-
-sudo nano /etc/apache2/users/username.conf
-
-
-# Des logiciels libres dans le terminal
 
 
 
-# Git
-
-> git config --global user.name "KevCaz"
-> git config --global user.email kevin.cazelles@gmail.com
-
-> git reset
 
 
 
-# Des logiciels libres dans le terminal
+
+# Compiler en ligne de commandes
+
+## Compilation C/C++/Fortran
+
+### Valgrind
+
+## Compilation Latex
+
+
+
+
+
+
+
+
+
+
+
+# Quelques logiciels libres et des commandes bien utiles
+
+pas macports / installer avec brew
+
+## ffmpeg
 
 ## ImageMagick
 
-<!-- identify -verbose rose.jpg -->
-<!-- convert -->
+## Pandoc
 
-<!-- mogrify -->
+## R, Python et Julia
 
-## FFmpeg
+## Versionning avec Git
 
-ffmpeg -i input_file.mp4 -acodec copy -vcodec copy -f mov output.mov
+## Postgresql
 
-
-for file in *.Rdata; do mv "$file" "${file/.Rdata/_1.Rdata}"; done
-
-
-<!-- Dans le cas de multiples extensions :
-
-nsoualem@gold: -> FILE=archive.tar.gz
-nsoualem@gold: -> echo ${FILE%%.*}
-archive
-nsoualem@gold: -> echo ${FILE%.*}
-archive.tar
-nsoualem@gold: -> echo ${FILE#*.}
-tar.gz
-nsoualem@gold: -> echo ${FILE##*.}
-gz -->
-
-
-https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
+## Jekyll

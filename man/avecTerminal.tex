@@ -1,0 +1,1358 @@
+\section*{Avant-propos}\addcontentsline{toc}{section}{Avant-propos}
+
+\section{Avertissement}\label{avertissement}
+
+L'ensemble de ce qui suit est le fruit de nombreuses heures
+d'apprentissage sur Internet. En cherchant des solutions à des problèmes
+concrets pour réaliser différentes opérations, j'ai accumulé de
+nombreuse astuces qui facilitent aujourd'hui mon travail. Ne trouvant
+pas une telle compilation déjà toute écrite (ce qui n'est pas étonné car
+une combinaison d'utilisation est spécifique), j'ai décidé de les
+rassembler dans un même document. Pour tout ce qui est informatique, je
+suis autodidacte et je n'ai certainement pas des bases théoriques
+suffisantes. Cela dit, je communique quotidiennement avec mon ordinateur
+sous forme de lignes de commande. Ainsi, le document présent est le
+résultat d'une approche très pragmatique et égo-centrée du terminal.
+Néanmoins, je suis persuadé que beaucoup de matériel ici présenté
+peut-être utile à beaucoup d'utilisateur même occasionnel du terminal.
+
+\section{Mes sources}\label{mes-sources}
+
+Il y a beaucoup de source d'information sur Internet mais je n'ai pas
+trouvé une complilation d'usage multiple du terminal, alors je l'ai
+fait, au moins pour moi. Voici quelques ressources qui vous seront, je
+l'espère, utiles :
+
+\begin{itemize}
+\item
+  Généralités
+\item
+  \href{https://fr.wikipedia.org/wiki/Terminal_informatique}{Terminal
+  informatique}
+\item
+  \href{https://fr.wikipedia.org/wiki/Shell_Unix}{Shell Unix}
+\item
+  Base du Terminal
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://www.graffitix.fr/index.php?pg=MXTeBT1}{graffitix}
+  \end{itemize}
+\item
+  Liste des commandes
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://ss64.com/bash/}{ss64}
+  \end{itemize}
+\item
+  Astuces à la volée :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://www.maclife.com/search/terminal\%20101}{maclife}
+  \item
+    \href{http://www.magazine-avosmac.com/avosmacV4/}{A vos mac} (il
+    faut être abonné).
+  \item
+    \href{http://osxdaily.com/}{OSX daily}
+  \end{itemize}
+\item
+  Sites généralistes :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Regardez sur openclassroom (ancien site du zéro)
+  \item
+    Beaucoup d'astuces sur
+    \href{http://www.commentcamarche.net/faq/4801-guide-d-utilisation-du-shell-pour-debutant}{Comment
+    ça marche} (pour Linux mais beaucoup sont directement utilisables)
+  \end{itemize}
+\item
+  Avancé :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{http://abs.traduc.org/abs-fr/ch01.html}{Faire des scripts
+    bash}
+  \item
+    Le Bash est un langage commun aux systémes UNIX qui a une
+    \href{https://www.gnu.org/software/bash/manual/bashref.html}{documentation
+    officielle}.
+  \end{itemize}
+\end{itemize}
+
+\section{Mes Abréviations}\label{mes-abruxe9viations}
+
+Tout au long du document, j'emploie plusieurs abbréviations:
+
+\begin{itemize}
+\item
+  Rq : Remarque
+\item
+  NB : Nota Bene
+\item
+  Ex : Exemple
+\item
+  ctrl : touche « ctrl~», touche «~contrôle~»
+\item
+  alt : touche «~alt~» aussi appelée touche option.
+\item
+  cmd : touche «~cmd~», «~commande~»
+\item
+  fn : touche «~fn~», touche «~fonction~»
+\item
+  tab : touche tabulation ~
+\item
+  espace : la barre d'espace
+\item
+  entr : la touche entrée
+\item
+  «~adr~» désigne un chemin et « adr/fichier1~», le chemin jusqu'au
+  fichier \emph{fichier1} ; de même « adr/dossier~» désigne le chemin
+  pour accéder à un dossier précis.
+\item
+  CPU : \emph{Central Processing Unit}, unité centrale de traitement.
+\item
+  GPU : \emph{Grpahics Processing Unit}, processeur graphique.
+\end{itemize}
+
+\chapter{\texorpdfstring{Le terminal et l'application
+\emph{Terminal}}{Le terminal et l'application Terminal}}\label{le-terminal-et-lapplication-terminal}
+
+\section{Sémantique}\label{suxe9mantique}
+
+Le mot terminal fait référence au `terminal informatique' qui désigne la
+partie d'un réseau informatique avec lequel un humain peut communiquer.
+Cette communication consiste à lui faire exécuter une ou plusieurs
+opérations. Aujourd'hui, pour la plupart des utilisateurs, le travail
+avec l'ordinateur peut se faire de manière intuitive avec l'utilisation
+d'une interface graphique, sans utiliser de ligne de commande. En raison
+de l'utilisation de ligne de commande, les fenêtres d'invite de
+commandes sont appelées `terminal'.
+
+L'application terminal sous MacOSX L'application \emph{Terminal} est une
+console pour de nombreux langages de programmation. Par défaut,
+l'application lance le langage bash (Bourne-Again shell). On peut
+remarquer ces 4 lettres dans la barre de titre. Ce langage permet
+d'interagir avec son ordinateur à l'aide de lignes de commande.
+L'utilisation du bash est le premier aspect du Terminal développé plus
+bas. L'aspect minimaliste et un peu ésotérique d'un terminal dissimule
+des possibilités immenses d'utilisation de son ordinateur. Concrètement,
+au lieu d'utiliser diverses interfaces graphiques pour différentes
+applications il est possible, au prix d'un effort d'apprentissage,
+d'utiliser juste le \emph{Terminal}. Utiliser le \emph{Terminal} pour
+regarder des photos, écouter de la musique ou naviguer sur Internet
+n'est pas le plus évident. C'est tout de même possible et dans certains
+cas, cela peut être d'une efficacité redoutable.
+
+L'application \emph{Terminal} est une interface graphique possible et
+native sous MacOSX, il en existe une seconde très poplaire :
+\href{https://www.iterm2.com/index.html}{iTerm2}.
+
+\href{http://invisible-island.net/xterm/xterm.html}{Xterm}
+
+Sous Linix \href{https://doc.ubuntu-fr.org/terminal}{Le terminal
+GNU/Linux}
+
+https://doc.ubuntu-fr.org/terminal
+
+Utilisez l'une ou l'autre est, éà mon sens, une question de préférence
+en terme de faciliter dMutilisatuoib de design. Quand on utilise une
+langage dans une fenêtre de terminal ce n'est pas le choix du terminal
+qui change grand chose.
+
+\section{Pourquoi utiliser le
+terminal}\label{pourquoi-utiliser-le-terminal}
+
+\begin{itemize}
+\tightlist
+\item
+  on peut faire la plupart (même toutes) des actions sans, alors
+  pourquoi ?
+\item
+  tout faire en dans une même fenêtre,
+\item
+  améliorer son workflow /
+\item
+  les emballages bien que utiles consomme des ressources.
+\item
+  parfois des actions qu'on crois possible qu'avec certains logiciels
+  payants sont possibke pas avec des freware en ligne de commandes
+\item
+  ça ouvre un monde de software puissant qui ne sont pas toujours dans
+  un emballage GUI améliorer notre literacy
+\item
+  invite à mieux conprendre son ordinateur
+\end{itemize}
+
+\section{Raccourcis clavier (par défaut) de l'application
+terminal}\label{raccourcis-clavier-par-duxe9faut-de-lapplication-terminal}
+
+La configuration des raccourcis peut se faire via l'édition d'un ficher
+`.inputrc' dans le dossier utilisateur (à créer).
+
+Par déafault on a Ces raccourcis sont valides pour le bash (le langage
+pas défaut), mais aussi pour différentes applications. Cependant, ils
+peuvent aussi être complètement occultés dans certains modes du
+terminal. Ainsi, si vous utilisez l'éditeur de text \emph{nano} les
+raccourcis ne sont plus valides (il y en a d'autres).
+
+\section{Les racourcis de l'application
+terminal}\label{les-racourcis-de-lapplication-terminal}
+
+Il s'agit des raccourcis clavier par défault de MacOS 10.11.4 pour cette
+application. Vous les retrouverez dans le menu de la console, je liste
+ceux que je pense les plus utiles. Les raccourcis avec les cmd reste
+valides quel que soit l'utilisation de la console. Ce n'est pas le cas
+pour ceux qui utilisent la touche \textbf{ctrl} qui dépende de
+l'utilisation ils sont valides au quand la console est utiliser pour
+entrer des commandes Bash (mais parfois dans d'autres situations aussi).
+
+\subsection{Gestion des fenêtres}\label{gestion-des-fenuxeatres}
+
+\begin{itemize}
+\tightlist
+\item
+  Créer une nouvelle fenêtre : \textbf{cmd + N}\\
+\item
+  Créer un nouvel onglet : \textbf{cmd + T}
+\item
+  Diviser la fenêtre du terminal : \textbf{cmd + D}
+\item
+  Annuler la division : \textbf{cmd + shift + D}
+\item
+  Efface le contenu d'un onglet : \textbf{cmd+K} (ou \textbf{ctrl+L}, ou
+  utiliser la commande \textbf{clear})
+\item
+  Effacer la dernière ligne de commande et le(s) résultat(s) associé(s)
+  : \textbf{cmd+L}
+\item
+  Faire une recherche dans le contenu de la console : \textbf{cmd+F}
+\item
+  Sauver le conteniu d'un onglet sous forme de text : \textbf{cmd+S}
+\item
+  Imprimer le contenu de la console : \textbf{cmd+P}
+\end{itemize}
+
+\subsection{Naviguer dans la console}\label{naviguer-dans-la-console}
+
+En utilisant le terminal, il est fréquent d'accumuler bien plus de
+lignes dépassant largement la hauteur de la fenêtre du terminal, afin de
+naviguer dans le contenu d'un onglet on peut utiliser la barre de
+défilement, mais aussi :
+
+\begin{itemize}
+\tightlist
+\item
+  Remonter à la première ligne : \textbf{fn + flèche de gauche}
+\item
+  Descendre à la dernière ligne : \textbf{fn + flèche de gauche}
+\item
+  Remonter d'une page : \textbf{fn + flèche de gauche}
+\item
+  Descendre d'une page : \textbf{fn + flèche de gauche}
+\end{itemize}
+
+\subsection{Naviguer au sein d'une ligne de
+commande}\label{naviguer-au-sein-dune-ligne-de-commande}
+
+\begin{itemize}
+\tightlist
+\item
+  Avancer d'un symbole : \textbf{flèche de droite} (ou \textbf{ctrl+p})
+\item
+  Reculer d'un symbole : \textbf{flèche de gauche} (ou \textbf{ctrl+b})
+\item
+  Avancer d'un symbole : \textbf{alt + flèche de droite}
+\item
+  Avancer d'un symbole : \textbf{alt + flèche de droite}
+\item
+  Aller au début d'une ligne : \textbf{ctrl + A}\\
+\item
+  Aller à la fin d'une ligne : \textbf{ctrl + E}\\
+\item
+  Aller d'un bout de la ligne à l'autre : \textbf{ctrl + X} (2 fois)
+\end{itemize}
+
+\subsection{Ecrire efficacement une ligne de
+commande}\label{ecrire-efficacement-une-ligne-de-commande}
+
+\begin{itemize}
+\tightlist
+\item
+  Auto-complétion: \textbf{tab} ; l'auto-complétion est l'action de
+  complèter un mot / une commande dont on a entré les premiers
+  charactères.
+\item
+  Si l'auto-complétion ne fonctionne pas deux situations sont à
+  envisager :
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    il n'y a pas de correspondance avec un nom de fichier / de commande
+    / \ldots{} existant,
+  \item
+    plusieurs choix sont disponibles, dans ce cas, en utilisant
+    \textbf{tab} de nouveau, on affiche la liste des possibilités.
+  \end{enumerate}
+\item
+  Effacer le caractère à gauche du curseur : \textbf{backspace} (le
+  classique) ou \textbf{ctrl + H}
+\item
+  Effacer le caractère à droite du curseur : \textbf{ctrl + D} attention
+  si utilisé sur une ligne vite, entraîne la déconnection)
+\item
+  Effacer tout ce qui se trouve à gauche du curseur : \textbf{ctrl + U}
+\item
+  Effacer tout ce qui se trouve à droite du curseur : \textbf{ctrl + K}
+\item
+  Effacer le mot juste à gauche du curseur : \textbf{ctrl + W}
+\item
+  Inverser les deux dernières lettres : \textbf{ctrl + T}
+\item
+  Coller la saisie précédente : \textbf{ctrl + Y}
+\item
+  Rappeler la dernière commande : \textbf{flèche du haut} (ou
+  \textbf{ctrl+P})
+\item
+  Revenir vers une commande plus récente : \textbf{flèche du bas} (ou
+  \textbf{ctrl+N})
+\item
+  Recherche dans l'historique : \textbf{ctrl + R}, il suffit alors
+  d'entrer les premières charactère de la ligne ayant été utilisée
+  précedemment.
+\end{itemize}
+
+\subsection{Executer/arrêter une ligne de
+commande}\label{executerarruxeater-une-ligne-de-commande}
+
+\begin{itemize}
+\tightlist
+\item
+  Exécuter une commande : écrire la commande puis \textbf{entr} (ou
+  \textbf{ctrl+J} ou )
+\item
+  Annuler l'exécution d'une commande : \textbf{ctrl + C}
+\item
+  Stopper une tâche : \textbf{ctrl + Z}
+\item
+  Déconnection de la session terminal: \textbf{ctrl + D} (sur une ligne
+  vide)
+\end{itemize}
+
+\textbf{NB} : Pour ne pas entrer manuellement un chemin, on peut faire
+glisser le dossier ou le fichier concerné, son chemin apparaîtra alors.
+
+\section{Les commandes ?}\label{les-commandes}
+
+De manière générale, pour un langage dooné, une commande est un ensemble
+de charactères interprété par l'ordinateur comme une instruction
+induisant la réalisation d'une tâche par celui-ci (si la commande est
+correctement entrée). Quelques spécifications pour le langage bash :
+
+\begin{itemize}
+\tightlist
+\item
+  Utilisation d'une commande. Dans «~Terminal~», il est nécessaire
+  d'entrer le nom de la commande puis éventuellement l'option qui est en
+  général un tiret (``-'') et une ou ou deux lettres puis éventuellement
+  des paramètres suivis éventuellement de l'objet qu'elle concerne
+  (souvent un fichier représenter par son chemin) : nomcommande -option1
+  -option2 paramètre objet (il suffit alors de taper \textbf{entr}). Les
+  options peuvent être mises les unes à la suite des autres
+  -option1option2.
+\end{itemize}
+
+Exemple 1, une commande sans option
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{ls}
+\end{Highlighting}
+\end{Shaded}
+
+le résulat est une liste de fichiers et de dossier là où vous êtes
+
+Il n'y a que la commande \emph{ls} qui liste les fichiers du repertoire
+courant, - Ex 2 :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{ls} \NormalTok{-a}
+\end{Highlighting}
+\end{Shaded}
+
+la même commande avec une option -a (afficher tous les fichiers, même
+les fichiers cachés),
+
+\begin{verbatim}
+- Ex 3 :
+
+> ls -a ~/Documents
+\end{verbatim}
+
+je rajoute le répertoire pour lequel je veux la listes de tous les
+fichiers
+
+\begin{verbatim}
+- Ex 4 :
+
+> mkfile -nv 100k ~/Desktop/exemple1.txt
+\end{verbatim}
+
+Crée un fichier avec deux options \emph{-n} et \emph{-v} (raccourcis en
+\emph{-nv}), le paramètre 100k (taille du fichier) et le nom du fichier
+\emph{\textasciitilde{}/Desktop/exemple1.txt}, L'adresse d'un fichier
+qui va être créé.
+
+\begin{itemize}
+\item
+  Une commande est en fait un exécutable dont on peut facilement trouver
+  l'adresse : \textbf{which + nom\_commande}, une recherche large est
+  possible avec : \textbf{locate + nom\_commande}
+\item
+  Les commandes ne sont pas sensible à la casse. ex : ls = LS = lS = Ls.
+  \emph{Attention!!} ce n'est pas le cas pour les options.
+\item
+  Pour tout renseignement relatif è une commande (notamment pour en
+  connaître les options) : \textbf{man + nom\_commande} (\textbf{q} pour
+  quitter le manuel), celui-ci décrit la fonction de la commande. Pour
+  savoir comment faire défiler l'écran, une fois dans dans le mode
+  manuel, il faut entrer h (en bref on peut utiliser les flèches, les
+  flêches avec \textbf{fn} (ou encore \textbf{b }et \textbf{z} ou
+  \textbf{espace} également).
+\item
+  Parfois un droit d'administrateur est requis pour certaines actions,
+  typiquement lorsqu'un message ``permission denied'' apparaît suite à
+  l'entrée de la commande. Pour pouvoir exécuter la commande il faut
+  avoir les droits d'administrateurs et faire précéder la commande de :
+  \textbf{sudo} («~super user do~»).Le mot de passe associé au compte
+  administrateur est alors demandé.
+\end{itemize}
+
+\subsection{\texorpdfstring{Les commandes basiques du
+\emph{bash}}{Les commandes basiques du bash}}\label{les-commandes-basiques-du-bash}
+
+Dans la suite je présente différentes commandes du bash. Je ne
+détaillerai que très peu d'options, pour les connaître, utiliser le
+manuel. Dans le \emph{bash}, le charactère \# est utilisé pour
+introduire des commentaires.
+
+\subsubsection{Naviguer à travers les différents
+répertoires}\label{naviguer-uxe0-travers-les-diffuxe9rents-ruxe9pertoires}
+
+\begin{itemize}
+\tightlist
+\item
+  Changer de répertoire :
+\end{itemize}
+
+\begin{quote}
+cd adr\\
+\# Exemple :\\
+cd /dossiera/dossierb/dossierC/file1.txt
+\end{quote}
+
+\begin{itemize}
+\item
+  quelques cas particuliers :
+
+  \begin{quote}
+  \# Aller à la racine :\\
+  cd /\\
+  \# Aller au dossier utilisateur :\\
+  cd \textasciitilde{}\\
+  \# Aller au dossier supérieur :\\
+  cd ..
+  \end{quote}
+\item
+  Connaître le répertoire actuel :
+\end{itemize}
+
+\begin{quote}
+pwd
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Lister les fichiers d'un dossier :
+\end{itemize}
+
+\begin{quote}
+ls adr
+\end{quote}
+
+si aucun nom de dossier n'est donné, ce sont les fichiers du répertoire
+courant qui sont listés. Option \emph{-a} pour voir les fichiers cachés
+et option \emph{-l} pour obtenir des informations sur les fichiers (date
+de modification et qui est propriétaire).
+
+\begin{quote}
+ls -alth
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Connaître la taille des fichiers
+\end{itemize}
+
+\begin{quote}
+du adr
+\end{quote}
+
+option \emph{-s} pour faire la somme de la taille des fichiers d'un
+dossier et option \emph{-h} pour avoir des nombres en unité facile à
+lire. ex : du -sh \textasciitilde{}/Documents
+
+\begin{itemize}
+\tightlist
+\item
+  Créer un nouveau fichier :
+\end{itemize}
+
+\begin{quote}
+mkfile + adr/nom\_fichier
+\end{quote}
+
+On peut préciser la taille du fichier ex: \textgreater{} mkfile 140k
+truc.txt
+
+\begin{itemize}
+\tightlist
+\item
+  Créer un nouveau dossier :
+\end{itemize}
+
+\begin{quote}
+mkdir + adr/nom\_dossier
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Copier un fichier :
+\end{itemize}
+
+\begin{quote}
+cp adr1/fichier1 adr2/fichier2
+\end{quote}
+
+Si fichier2 n'est pas préciser, fichier1 est utilisé comme nom de
+fichier.
+
+\begin{itemize}
+\tightlist
+\item
+  Copier un dossier :
+\end{itemize}
+
+\begin{quote}
+cp -R adr1/dossier1 adr2/dossier2
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Déplacer un fichier ou un dossier :
+\end{itemize}
+
+\begin{quote}
+mv adr1/fichier1 adr2/fichier2
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Suppimer un fichier :
+\end{itemize}
+
+\begin{quote}
+rm +adr/fichier
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Suppimer un dossier :
+\end{itemize}
+
+\begin{quote}
+rm -R adr/dossier (option f pour forcer) rmdir adr/dossier
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Vider la corbeille :
+\end{itemize}
+
+\begin{quote}
+~rm -r \textasciitilde{} /.Trash/*
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Ouvrir un fichier :
+\end{itemize}
+
+\begin{quote}
+open + adr/fichier
+\end{quote}
+
+Pour visualiser un fichier en lecture seule on utilise la commande less
+:
+
+option \emph{-a} permet de spécifier l'application avec laquelle pouvrir
+le fichier, ex: open -a Finder / )
+
+\begin{itemize}
+\tightlist
+\item
+  Changer le propriétaire d'un fichier :
+\end{itemize}
+
+\begin{quote}
+chown owner{[}:group{]} adr/fichier
+\end{quote}
+
+Défini à qui appartient le fichier.
+
+\begin{itemize}
+\tightlist
+\item
+  Changer les droits d'accès d'un fichier :
+\end{itemize}
+
+\begin{quote}
+chmod mode adr/fichier
+\end{quote}
+
+Les modes permettent de définir les actions possibles sur un fichiers
+pour tous types d'utilisateurs, propriétaire ou non du fichier. Les
+modes s'écrivent sous forme d'un nombre précisant les droits des
+utilisateurs sur un fichier.
+
+\begin{itemize}
+\tightlist
+\item
+  Imprimer un fichier :
+\end{itemize}
+
+\begin{quote}
+lpr adr/fichier
+\end{quote}
+
+Attention, tous les types de fichiers ne sont pas supportés.
+
+\section{Éteindre/redémarrer et relancer le
+Finder}\label{uxe9teindrereduxe9marrer-et-relancer-le-finder}
+
+\begin{itemize}
+\tightlist
+\item
+  Eteindre :
+\end{itemize}
+
+\begin{quote}
+sudo shutdown -h now
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Eteindre dans 30 minutes :
+\end{itemize}
+
+\begin{quote}
+sudo shutdown -h +30
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Eteindre le 06/12/2015 à 15h30 :
+\end{itemize}
+
+\begin{quote}
+sudo shutdown -h 1512061530
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Redémarrer :
+\end{itemize}
+
+\begin{quote}
+sudo shutdown -r now\\
+\# plus simplement :\\
+sudo reboot
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Relancer le Finder :
+\end{itemize}
+
+\begin{quote}
+sudo killall Finder
+\end{quote}
+
+\section{Gérer l'ordinateur}\label{guxe9rer-lordinateur}
+
+\subsection{La date}\label{la-date}
+
+\begin{itemize}
+\tightlist
+\item
+  Obtenir la date :
+\end{itemize}
+
+\begin{quote}
+date
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Changer la date :
+\end{itemize}
+
+\begin{quote}
+date 0613162785
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Changer la date :
+\end{itemize}
+
+\begin{quote}
+date 1758
+\end{quote}
+
+\subsection{Veille de l'ordinateur et suspensions des
+executions}\label{veille-de-lordinateur-et-suspensions-des-executions}
+
+\begin{itemize}
+\item
+  Laisser l'ordinateur en activité (pas de veille) :
+
+  \begin{quote}
+  caffeinate
+  \end{quote}
+
+  option \emph{-d} pour que l'écran ne se mette pas en veille, option
+  \emph{-t} pour choisir le temps (en seconde). Ex : caffeinate -dt 600
+  =\textgreater{} permet de maintenir l'ordinateur mais aussi l'écran en
+  activité pendant 10 minutes.
+\item
+  Suspendre les exécutions pendant une durée «~tps~» exprimé en secondes
+  :
+
+  \begin{quote}
+  sleep + tps
+  \end{quote}
+
+  Ex : si j'utilise ``sleep 10'' et que j'essaye ensuite d'entrer la
+  commande ls, je devrais attendre la fin des des 10 secondes pour que
+  la commande soit exécutée.
+\end{itemize}
+
+\subsection{Visualiser l'acitivité de son
+ordinateur}\label{visualiser-lacitivituxe9-de-son-ordinateur}
+
+\begin{itemize}
+\tightlist
+\item
+  Visualiser l'activité :
+\end{itemize}
+
+\begin{quote}
+top
+\end{quote}
+
+Cette commande affiche un grand tableau, la table des processus (Table
+Of Processes). Un processus est une tâche entreprise par l'ordinateur
+qui est répertorié tant qu'elle a court. Parmi les colonnes, on a : 1.
+\textbf{PID} : le numéro d'identité du processus 2. \textbf{COMMAND} :
+le nom du processus 3. \textbf{\%CPU} : le pourcentage CPU utilisé, il
+s'agit d'une mesure unstantannée de la charge de travail du processeur
+(on a jusqu'à n*100\% de CPU disponible ou n est le nombre de coeur.).
+4. \textbf{\%TIME} : la durée d'activité du processus 4. \textbf{MEM} :
+la mémoire utilisée par le processus
+
+Une fois que l'on affiche le tableau, le terminal fonctionne un peu
+différemment. Pour connaître ce qu'on peut faire, il suffit d'entrer
+\textbf{?}. Une action pratique est de trier le tableau, il fa=ut alors
+taper \textbf{o} puis le nom de la colonne, par exemple \textbf{cpu}
+pour afficher par utilisation de cpu et \textbf{cpu} pour trier par
+quantité de mémoire utilisée. Pour quitter le tableau, entrer
+\textbf{q}.
+
+\begin{itemize}
+\tightlist
+\item
+  Arrêter une tâche :
+\end{itemize}
+
+\begin{quote}
+kill + Pid
+\end{quote}
+
+Le Pid est le numéro d'indentité donné par le taleau top.
+
+\begin{quote}
+kill -STOP Pid kill -COUNT Pid
+\end{quote}
+
+\href{http://osxdaily.com/2013/05/30/pause-resume-app-process-mac-os-x/}{kill}
+
+\begin{itemize}
+\tightlist
+\item
+  Connaître son «load average~» :
+\end{itemize}
+
+\begin{quote}
+uptime
+\end{quote}
+
+Le load average désigne, sous les systèmes UNIX, une moyenne de la
+charge système, une mesure de la quantité de travail que fait le système
+durant la période considérée. (cf.~Wikipedia)
+
+\begin{itemize}
+\item
+  Exécuter des tâches en arrière plan :
+\item
+  Chaque commande peut être exécutée en arrière plan, pour cela on
+  ajoute \& à la fin de celle-ci. L'identité «~pid~» du processus est
+  alors donné. Il s'agit d'un numéro de tâche qui s'inscrivent à chauqe
+  nouvelle tâche et cela, depuis que vous avez redémarrez votre
+  ordinateur. Ce numéro est accessible grâce à la commande top, pour le
+  supprimer : kill pid
+\item
+  Ex : sleep 10\& (cette fois vous pourrez exécuter ls !)
+\item
+  Pour faire revenir le processus au premier plan : fg \%njob (premier
+  numéro sur la gauche donné par la commande jobs)
+\item
+  Un processus stoppé peut être passé à l'arrière plan : bg \%njob
+\item
+  Avec top, on peut avoir accès aux identités des processus : kill pid,
+  supprime le processus ; kill -stop pid le met en pause, kill -cont pid
+  le réactive.
+\end{itemize}
+
+\subsection{Disques et clef USB}\label{disques-et-clef-usb}
+
+\begin{itemize}
+\item
+  Forcer l'éjection d'un cd : \textgreater{} sudo drutil eject
+\item
+  Liste des volumes montés et leurs caractéristiques : df (-h
+  «human~»pour avoir des préfixes connus, \emph{~ pour l'ensemble des
+  dossiers d'un dossier (avec un espace) ! ex : du -sh }
+  \textasciitilde{})
+\end{itemize}
+
+\subsection{Réseaux}\label{ruxe9seaux}
+
+\begin{itemize}
+\tightlist
+\item
+  Afficher l'ensemble des disques utilisés :
+\end{itemize}
+
+\begin{quote}
+diskutil list
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Visualiser/configurer les réseaux :
+\end{itemize}
+
+\begin{quote}
+ifconfig
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Obtenir son adresse IP :
+\end{itemize}
+
+\begin{quote}
+ipconfig getifaddr en0
+\end{quote}
+
+ou en1 si «~en2~» dans ifconfig existe
+
+\begin{itemize}
+\tightlist
+\item
+  Regarder l'état des réseaux que l'on utilise :
+\end{itemize}
+
+\begin{quote}
+netstat netstat -A
+\end{quote}
+
+\subsection{Astuce Apple}\label{astuce-apple}
+
+\begin{itemize}
+\tightlist
+\item
+  Changer le type du fichier de capture d'écran (.png par défaut):
+\end{itemize}
+
+\begin{quote}
+defaults write com.apple.screencapture type PDF (ou jpg ou png)
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Afficher les fichiers cachés defaults :
+\end{itemize}
+
+\begin{quote}
+write com.apple.finder AppleShowAllFiles 1
+\end{quote}
+
+Remplacer le 1 par 0 pour les cacher, pour que la manipulation soit
+effective, il faut relancer le Finder.
+
+\begin{itemize}
+\tightlist
+\item
+  Reconstruire reconstruire l'index du spotlight :
+\end{itemize}
+
+\begin{quote}
+sudo mdutil -E /
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Reconstruire reconstruire l'index du spotlight d'un volume :
+\end{itemize}
+
+\begin{quote}
+sudo mdutil -E /Volumes/{[}DriveName{]}
+\end{quote}
+
+\subsection{Créer une archive :}\label{cruxe9er-une-archive}
+
+\begin{itemize}
+\tightlist
+\item
+  Créer une archive tar : tar adr/fichier (beaucoup de possibilité,
+  ajouter dans une archive\ldots{}, à développer)
+\item
+  Créer une archive zip : gzip adr/fichier (option -k pour garder la
+  copie non zippée)
+\item
+  Dezipper une archive zip : gunzip adr/fichier
+\end{itemize}
+
+\subsection{Connaître son Hardware :}\label{connauxeetre-son-hardware}
+
+\begin{itemize}
+\tightlist
+\item
+  system\_profiler SPHardwareDataType
+\item
+  sysctl hw
+\item
+  sysctl machdep.cpu
+\end{itemize}
+
+\subsection{Fichiers cachés}\label{fichiers-cachuxe9s}
+
+\begin{itemize}
+\item
+  Rq : Pour créer rapidement un fichier caché, il suffit de faire
+  commencer son nom par un «~.~».
+\item
+  Faire d'un fichier caché, un fichier apparent : sudo chflags nohidden
+  nomdufichier (option -R pour un dossier)
+\end{itemize}
+
+\subsection{Recherche de fichiers}\label{recherche-de-fichiers}
+
+Nous sommes souvent en train de rechercher des fichiers et bien que
+«~Spotlight~» soit souvent d'une grande aide il est parfois difficile
+d'avoir exactement ce que l'on veut. Pour des recherches très efficace,
+il existe des commandes bash d'une très grande efficacité mais qui
+demandent un peu d'entrainement !
+
+\subsubsection{expressions
+régulières}\label{expressions-ruxe9guliuxe8res}
+
+grep grep -rwl niche \textasciitilde{}/Desktop/interactionLS/ options :
+-r dans le subfolder -w le mot entier -l liste de fichier -v l'inverse
+de ce qui est chercher grep .tex grep \^{}sep.r.te /usr/share/dict/words
+
+\begin{itemize}
+\item
+  Recherche dans l'historique : history \textbar{} grep gcc
+\item
+  Liste des expressions régulières : ------------------ \^{} debut \$
+  fin ------------------
+\item
+  plusieurs fois le caractère précédent (au moins une fois)
+\item
+  zéro ou plusieurs fois le caractère précédent ? zéro ou une seule fois
+  le caractère précédent \{x\} x fois le caractère précédent \{x,\} x
+  fois ou plus le caractère précédent \{i,j\} minimum i fois, maximum j
+  fois le caractère précédent ------------------ ( ) ces règles peuvent
+  s'appliquer sur un ensemble de caractères/expression entre parenthèse
+  ------------------ \textbar{} ou . n'importe quel caractère une seule
+  fois ------------------ {[} {]} liste de caractères autorisés sur
+  lesquels peuvent s'appliquer les règles précédentes {[}\^{} {]} liste
+  de caractères interdits
+\item
+  permet de définir des intervalles {[}a-z{]}{[}:alpha:{]} ou
+  {[}a-zA-Z{]}{[}:digit:{]} ou {[}0-9{]}{[}:album:{]} ou
+  {[}a-zA-Z0-9{]}{[}:blank:{]} {[}:punct:{]} caractère de ponctuation
+  ------------------
+\end{itemize}
+
+\subsection{chercher un fichier}\label{chercher-un-fichier}
+
+\begin{quote}
+find \textasciitilde{}/ -iname `evol' find \textasciitilde{}/Desktop
+-iname `*.txt'
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Trouver les différences entre des fichiers :
+\end{itemize}
+
+\begin{quote}
+vimdiff file1 file2 file3
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Réunir des textes en un seul :
+\end{itemize}
+
+\begin{quote}
+cat sample1.txt sample2.txt sample3.txt \textgreater{} sample-all.txt
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  metadata search : \textgreater{} mdfind word1 word2 word3
+\end{itemize}
+
+ex : mdfind wavelet ecology markov test fourier royal society chavez
+using or (royal or society)
+
+\begin{quote}
+mdfind wavelet ecology markov test fourier (royal \textbar{} society)
+mdfind -onlyin \textasciitilde{}/Movies couleur
+\end{quote}
+
+\subsection{Créer un alias}\label{cruxe9er-un-alias}
+
+\begin{itemize}
+\tightlist
+\item
+  Lorsqu'on utilise à répétition une commande, il peut être intéressant
+  de créer un alias. Par exemple, j'ai souvent besoin d'aller dans mon
+  dossier de thèse : cd \textasciitilde{}/Documents/PHD, j'aimerais
+  simplement taper «phd», pour cela : alias php `cd
+  \textasciitilde{}/Documents/PHD'
+\item
+  De manière générale le principe est le suivant : alias
+  +nom\_de\_la\_commade\_désirée +~`la commande entre guillemets'
+\item
+  La procédure précédente permet seulement d'avoir une commande pendant
+  la session, pour la garder en mémoire il est nécessaire de
+  l'enregistrer dans le fichier «./bash\_profile~» dans le dossier
+  utilisateur (\textasciitilde{}). Une procédure possible est alors : 1-
+  cd \textasciitilde{} 2- nano \textasciitilde{}/bash\_profile 3- on
+  ajoute la ligne : alias php `cd \textasciitilde{}/Documents/PHD' 4- on
+  enregistre et voila ! Il faudra alors soit rouvrir un onglet, relancer
+  le terminal ou entrer : source \textasciitilde{}/bash\_profile pour
+  que ce soit ok
+\item
+  Si par hasard, on souhaite créer un alias qui a un nom qui existe déjà
+  (typiquement pour ne pas rentrer une option à chaque fois),
+  l'antislash «~~» rétabli la commande par défaut. Ex : si j'utilise
+  très fréquemment ls -la tout le temps =\textgreater{} je peux alors
+  créer l'alias : alias ls `ls -la' et alors pour avoir le ls d'origine
+  =\textgreater{} la commande : \textbackslash{}ls est alors le ls par
+  défaut.
+\end{itemize}
+
+screen screen -d
+http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/
+
+\chapter{Les gestionnaires de paquets sous
+MacOS}\label{les-gestionnaires-de-paquets-sous-macos}
+
+Il s'agit d'application qui facilitent l'installation de logiciels
+libres. Ces différents logiciels sont installés facilement en quelques
+lignes de commandes. C'est une pratique qui existe par défaut dans les
+différentes distributions de Linux (apt-get, yum,\ldots{}) mais qui doit
+être installé pour MacOS. Il existe plusieurs gestionnaires de paquets :
+Fink, MacPort et Homebrew. Je présente MacPort et Homebrew dans les
+sections qui suivent. Je n'utilise plus MacPort depuis mi-2014, je suis
+passé à Homebrew, il se peut donc que certaines indications ne soient
+pas correctes. Une installtion propore
+
+\section{MacPorts}\label{macports}
+
+Avec MacPorts, tout ce que vous demandez sera installé dans le
+répertoire : /opt/local. Pour voir la liste des exécutables (les
+logiciels libres) qui seront appelés par une commande le plus souvent de
+ce même nom : ls /opt/local/bin
+
+\subsection{Installation de MacPorts}\label{installation-de-macports}
+
+\begin{itemize}
+\tightlist
+\item
+  Il faut commencer par l'installer : http://www.macports.org/
+\item
+  Toutes (très très complet!) les indications sont à l'adresse suivant :
+  http://guide.macports.org/
+\item
+  Pour apprendre :
+  http://fr.openclassrooms.com/informatique/cours/utilisez-macports
+\item
+  NB : Il faut veiller à avoir la dernière version de «~Xcode~» (ça
+  change entre les OS ! télécharger toujours la dernière version de
+  Xcode adaptée à l'OS) : puis installer le guide d'outil du développeur
+  avec la commande : xcode-select --install
+\end{itemize}
+
+\subsection{Utiliser MacPorts}\label{utiliser-macports}
+
+\begin{itemize}
+\item
+  Pour entrer en mode actif : port
+\item
+  Pour entrer avec les droits admin : sudo port
+\item
+  Sinon on met port (ou sudo port) en début de commande (on entre pas
+  dans le mode actif) (option installed, uninstalled)
+\item
+  Voir la liste des packages : list
+\item
+  Chercher avec un mot clef : search + mot
+\item
+  Des infos sur un port : info + nom du port
+\item
+  Les dépendances d'un port : info + nom du port
+\item
+  Installer des packages/ mises à jour :
+\item
+  Attention pour pouvoir installer un package, il faut avoir les droits
+  d'administrateur et donc il est nécessaire de se connecter en «~sudo
+  port~»
+\item
+  Installer un package : install +nom package
+\item
+  Désinstaller un package : uninstall +nom package (option
+  ---follow-dependents, pour désinstaller les dépendances)
+\item
+  Mise à jour de la liste de package : sync
+\item
+  Port pas à jour : port outdated (on peut ajouter list pour un
+  défilement : port list outdated ) /etc/macports/sources.conf,
+\item
+  Mise à jour de la liste et des packages installés : selfupdate
+\item
+  NB : si le message d'erreur suivant apparaît : Error: Error
+  synchronizing MacPorts sources: command execution failed cela est
+  vraisemblablement du à votre connexion (cela m'arrive quand je suis au
+  labratoire!).
+\item
+  Mise à jour d'un seul package : upgrade + nom package
+\item
+  Mise à jour des ports pas à jour : sudo port upgrade outdated
+\item
+  Chercher port qui dépendent d'un nom donné : port echo
+  depends:nompackage
+\item
+  Cleaning package (je suis pas bien capable de vous dire ce que ça
+  fait) : port clean --- all installed ; port clean --- dist
+\item
+  Par défaut les versions anciennes, inactives (donc plus requises) ne
+  sont pas enlever, pour le faire : sudo port -v uninstall inactive
+\item
+  J'ai eu pas mal de problème pour synchroniser il semble que parfois on
+  rencontre des problèmes avec Xcode (encore une fois vérifier que vous
+  avez bien la dernière version, la solution est à nouveau sur le site
+  de Macports)\ldots{}
+\item
+  Pour régler le problème de synchronisation que j'ai rencontré, il
+  suffit de ne pas prendre la voie courante, on peut alors aller dans le
+  fichier «~mdfind source.conf~» (où est-il ? =\textgreater{} mdfind
+  -name sources.conf), il faut commenter la dernière ligne «rsync
+  \ldots{}~» et ajouter en-dessous:
+  https://distfiles.macports.org/ports.tar.gz //To use the rsyncd server
+  you must copy /opt/local/etc/rsyncd.conf.example to rsyncd.conf and
+  add your modules there. //See `man rsyncd.conf' for more information
+\item
+  Désinstallation : enlever tous les packages: sudo port -fp uninstall
+  installed
+\item
+  Enlever toute trace de MacPort: sudo rm -rf\\
+  /opt/local\\
+  /Applications/DarwinPorts\\
+  /Applications/MacPorts\\
+  /Library/LaunchDaemons/org.macports.*\\
+  /Library/Receipts/DarwinPorts\emph{.pkg\\
+  /Library/Receipts/MacPorts}.pkg\\
+  /Library/StartupItems/DarwinPortsStartup\\
+  /Library/Tcl/darwinports1.0\\
+  /Library/Tcl/macports1.0\\
+  \textasciitilde{}/.macports
+\item
+  Encore une fois le guide officiel est complet: guide officiel
+\end{itemize}
+
+\section{Homebrew}\label{homebrew}
+
+\href{http://brew.sh}{Homebrew} est, à mon sens, encore plus facile
+d'utilisation et très prometteur pour les années à venir (il y a de
+grandes facilités pour les dévreloppeurs). Homebrew est aussi un
+gestionnaire de package qui est équivalent MacPort, le vocaublaire
+employé (les commandes) font écho au homebrew, les noms des paquets
+deviennent des formules/recette que l'on met à jour et que l'on
+brasse/remue (brew) pour les installer/mettre à jour sur notre
+ordinateurs. Visitez
+\href{https://zestedesavoir.com/tutoriels/578/homebrew-pour-gerer-ses-logiciels-os-x/}{OpenClassroom}
+pour des informations complémentaires. les paquets seront stockés dans
+/usr/local/Cellar.
+
+\subsection{Installation et
+désinstallation}\label{installation-et-duxe9sinstallation}
+
+Avant d'installer MacPort vérifier que Xcode soit installé, que vous
+ayez accepté les closes de la license et d'avoir entrer la ligne de
+commande suivante : \textgreater{} xcode-select --install
+
+Installation, entrez dans le terminal :
+
+\begin{quote}
+ruby -e ``\$(curl -fsSL
+https://raw.githubusercontent.com/Homebrew/install/master/install)''
+\end{quote}
+
+Désinstallation :
+
+\begin{quote}
+/usr/bin/ruby -e ``\$(curl -fsSL
+https://raw.githubusercontent.com/Homebrew/install/master/uninstall)''
+\end{quote}
+
+\subsection{Commande principales}\label{commande-principales}
+
+brew update brew upgrade brew remove brew list brew doctor brew prune
+brew tape brew info brew update; brew upgrade; brew cleanup; brew cask
+cleanup;
+
+\subsection{Mon installation}\label{mon-installation}
+
+\begin{quote}
+brew install gdal geos proj r imagemagick ffmpeg postgresql pandoc
+pandoc-citeproc valgrind
+\end{quote}
+
+NB : cask est une extension de brew il suffit d'utiliser brew cask ou
+mettre le chemin complet:
+
+\begin{quote}
+brew cask install julia mactex dropbox copy rstudio atom filezilla
+libreoffice gimp inkscape mendeley-desktop xquartz appcleaner vlc
+\end{quote}
+
+\begin{quote}
+brew tap homebrew/science
+\end{quote}
+
+\begin{quote}
+brew install r imagemagick ffmpeg postgresql lynx
+\end{quote}
+
+NB : cask est une extension de brew il suffit d'utiliser brew cask ou
+mettre le chemin complet:
+
+\begin{quote}
+brew cask install java julia mactex dropbox copy rstudio brew install
+Caskroom/cask/libreoffice Caskroom/cask/appcleaner Caskroom/cask/atom
+Caskroom/cask/xquartz Caskroom/cask/filezilla
+\end{quote}
+
+\begin{quote}
+sudo chown -R \$(whoami):admin /usr/local
+\end{quote}
+
+\chapter{Developpement web}\label{developpement-web}
+
+MacOS 10.10
+http://ole.michelsen.dk/blog/setup-local-web-server-apache-php-osx-yosemite.html
+MacOS 10.11
+http://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-osx-10-11-el-capitan/
+
+sudo apachectl start sudo apachectl restart httpd -v
+
+Setup local web server with Apache and PHP on OS X El capitan
+
+sudo nano /etc/apache2/users/username.conf
+
+\chapter{Des logiciels libres dans le
+terminal}\label{des-logiciels-libres-dans-le-terminal}
+
+\chapter{Git}\label{git}
+
+\begin{quote}
+git config --global user.name ``KevCaz'' git config --global user.email
+kevin.cazelles@gmail.com
+\end{quote}
+
+\begin{quote}
+git reset
+\end{quote}
+
+\chapter{Des logiciels libres dans le
+terminal}\label{des-logiciels-libres-dans-le-terminal-1}
+
+\section{ImageMagick}\label{imagemagick}
+
+\section{FFmpeg}\label{ffmpeg}
+
+ffmpeg -i input\_file.mp4 -acodec copy -vcodec copy -f mov output.mov
+
+for file in *.Rdata; do mv ``\(file" "\)\{file/.Rdata/\_1.Rdata\}``;
+done
+
+https://www.gnu.org/software/make/manual/html\_node/File-Name-Functions.html
