@@ -39,16 +39,24 @@ date: "3 Mai 2016"
 
 ## Avertissement
 
-L'ensemble de ce qui suit est le fruit de nombreuses heures d'apprentissage sur Internet.
-En cherchant des solutions à des problèmes concrets pour réaliser différentes opérations, j'ai accumulé de nombreuse astuces qui facilitent aujourd'hui mon travail. Ne trouvant pas une telle compilation déjà toute écrite (ce qui n'est pas étonné car une combinaison d'utilisation est spécifique), j'ai décidé de les rassembler dans un même document.
-Pour tout ce qui est informatique, je suis autodidacte et je n'ai certainement pas des bases théoriques suffisantes. Cela dit, je communique quotidiennement avec mon ordinateur sous forme de lignes de commande. Ainsi, le document présent est le résultat d'une approche très pragmatique et égo-centrée du terminal.
-Néanmoins, je suis persuadé que beaucoup de matériel ici présenté peut-être utile à beaucoup d'utilisateur même occasionnel du terminal.
+L'ensemble de ce qui suit est le fruit de nombreuses heures d'apprentissage sur
+Internet. En cherchant des solutions à des problèmes concrets pour réaliser
+différentes opérations, j'ai accumulé de nombreuses astuces qui facilitent
+aujourd'hui mon travail. Ne trouvant pas une telle compilation déjà toute écrite
+(ce qui n'est pas étonné car une combinaison d'utilisation est spécifique), j'ai
+décidé de les rassembler dans un même document. Pour tout ce qui est
+informatique, je suis autodidacte et je n'ai certainement pas des bases
+théoriques suffisantes. Cela dit, je communique quotidiennement avec mon
+ordinateur sous forme de lignes de commande. Ainsi, le document présent est le
+résultat d'une approche très pragmatique et égo-centrée du terminal. Néanmoins,
+je suis persuadé que beaucoup de matériel ici présenté peut-être utile à
+beaucoup d'utilisateur même occasionnel du terminal.
 
 
 
 ## Mes sources
 
-Il y a beaucoup de source d'information sur Internet mais je n'ai pas trouvé une complilation d'usage multiple du terminal, alors je l'ai fait, au moins pour moi. Voici quelques ressources qui vous seront, je l'espère, utiles :
+Il y a beaucoup de source d'information sur Internet mais je n'ai pas trouvé une compilation d'usage multiple du terminal. Voici quelques ressources qui vous seront, je l'espère, utiles :
 
 - Généralités
 
@@ -117,17 +125,17 @@ Tout au long du document, j'emploie plusieurs abbréviations:
 
 Le mot terminal fait référence au 'terminal informatique' qui désigne la partie d'un réseau informatique avec lequel un humain peut communiquer. Cette communication consiste à lui faire exécuter une ou plusieurs opérations. Aujourd'hui, pour la plupart des utilisateurs, le travail avec l'ordinateur peut se faire de manière intuitive avec l'utilisation d'une interface graphique, sans utiliser de ligne de commande. En raison de l'utilisation de ligne de commande, les fenêtres d'invite de commandes sont appelées 'terminal'.
 
-De manière générale, pour un langage donné, une commande est un ensemble de charactères interprété par l'ordinateur et qui induit l'exécution d’une tâche corespondante par celui-ci (si la commande est correctement entrée). Ces commandes peuvent être agencées par l'utilsateur pour mener à bien un ensemble d'opération générant des suite de cacractères plus ou oins complexe. Pour l'utilsateur novice qui utilise n'a pas l'habitude de l'emploie de ligne de commande, les suites de clics (ou de raccourcis), sont remplacées par des commandes qu'il faut connaître (ou savoir retrouvées). Dialoguer avec l'ordinateur demande d'avoir un langage commun. Par défautlt la fenêtre s'ouvre et c'est le langage Bash qui est utilisé.
+De manière générale, pour un langage donné, une commande est un ensemble de caractères interprété par l'ordinateur et qui induit l'exécution d’une tâche correspondante par celui-ci (si la commande est correctement entrée). Ces commandes peuvent être agencées par l’utilisateur pour mener à bien un ensemble d'opération générant des suite de caractères plus ou oins complexe. Pour l’utilisateur novice qui utilise n'a pas l'habitude de l'emploie de ligne de commande, les suites de clics (ou de raccourcis), sont remplacées par des commandes qu'il faut connaître (ou savoir retrouvées). Dialoguer avec l'ordinateur demande d'avoir un langage commun. Par défaut la fenêtre s'ouvre et c'est le langage Bash qui est utilisé.
 
 L'application terminal sous MacOSX
 L'application _Terminal_ est une console pour de nombreux langages de programmation.
 Par défaut, l’application lance le langage bash (Bourne-Again shell). On peut remarquer ces 4 lettres dans la barre de titre. Ce langage permet d'interagir avec son ordinateur à l’aide de lignes de commande. L’utilisation du bash est le premier aspect du Terminal développé plus bas. L’aspect minimaliste et un peu ésotérique d'un terminal dissimule des possibilités immenses d'utilisation de son ordinateur. Concrètement, au lieu d’utiliser diverses interfaces graphiques pour différentes applications il est possible, au prix d'un effort d'apprentissage, d'utiliser juste le _Terminal_. Utiliser le _Terminal_ pour regarder des photos, écouter de la musique ou naviguer sur Internet n'est pas le plus évident. C'est tout de même possible et dans certains cas, cela peut être d'une efficacité redoutable.
 
-L'application _Terminal_ est une interface graphique possible et native sous MacOSX, il en existe une seconde très poplaire : [iTerm2](https://www.iterm2.com/index.html).
+L'application _Terminal_ est une interface graphique possible et native sous MacOSX, il en existe une seconde très populaire : [iTerm2](https://www.iterm2.com/index.html).
 
 [Xterm](http://invisible-island.net/xterm/xterm.html)
 
-Sous Linix [Le terminal GNU/Linux](https://doc.ubuntu-fr.org/terminal)
+Sous Linux [Le terminal GNU/Linux](https://doc.ubuntu-fr.org/terminal)
 
 https://doc.ubuntu-fr.org/terminal
 
@@ -141,9 +149,9 @@ Quand on utilise une langage dans une fenêtre de terminal ce n'est pas le choix
 - tout faire en dans une même fenêtre,
 - améliorer son workflow /
 - les emballages bien que utiles consomme des ressources.
-- parfois des actions qu'on crois possible qu'avec certains logiciels payants sont possibke pas avec des freware en ligne de commandes
+- parfois des actions qu'on crois possible qu'avec certains logiciels payants sont possible pas avec des freware en ligne de commandes
 - ça ouvre un monde de software puissant qui ne sont pas toujours dans un emballage GUI améliorer notre literacy
-- invite à mieux conprendre son ordinateur
+- invite à mieux comprendre son ordinateur
 
 
 
@@ -152,8 +160,11 @@ Quand on utilise une langage dans une fenêtre de terminal ce n'est pas le choix
 
 La configuration des raccourcis peut se faire via l'édition d'un ficher '.inputrc' dans le dossier utilisateur (à créer).
 
-Par déafault on a
-Ces raccourcis sont valides pour le bash (le langage pas défaut), mais aussi pour différentes applications. Cependant, ils peuvent aussi être complètement occultés dans certains modes du terminal. Ainsi, si vous utilisez l’éditeur de text _nano_ les raccourcis ne sont plus valides (il y en a d'autres).
+Par défault on a Ces raccourcis sont valides pour le bash (le langage pas
+défaut), mais aussi pour différentes applications. Cependant, ils peuvent aussi
+être complètement occultés dans certains modes du terminal. Ainsi, si vous
+utilisez l’éditeur de text _nano_ les raccourcis ne sont plus valides (il y en a
+d'autres).
 
 
 
@@ -922,45 +933,3 @@ Désinstallation :
   brew update; brew upgrade; brew cleanup; brew cask cleanup;
 
 
-
-
-
-
-
-
-
-# Compiler en ligne de commandes
-
-## Compilation C/C++/Fortran
-
-### Valgrind
-
-## Compilation Latex
-
-
-
-
-
-
-
-
-
-
-
-# Quelques logiciels libres et des commandes bien utiles
-
-pas macports / installer avec brew
-
-## ffmpeg
-
-## ImageMagick
-
-## Pandoc
-
-## R, Python et Julia
-
-## Versionning avec Git
-
-## Postgresql
-
-## Jekyll
